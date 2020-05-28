@@ -1,0 +1,16 @@
+{
+  "id": "1836152",
+  "name": "cesium",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2392629",
+      "name": "cp-指标",
+      "font_class": "zhibiao",
+      "unicode": "e6e2",
+      "unicode_decimal": 59106
+    }
+  ]
+}

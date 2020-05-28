@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>检测站信息</title>
+    <link rel="stylesheet" href="./static/js/layui-v2.4.5/layui/css/layui.css">
+    <link rel="stylesheet" href="./static/iconfont/iconfont.css">
+    <link rel="stylesheet" href="./static/css/factoryInfo.css">
+    <script type="text/javascript" src="./static/js/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="./static/js/layui-v2.4.5/layui/layui.all.js"></script>
+    <script type="text/javascript" src="./static/js/echarts.min.js"></script>
+    <script src="./static/cesium/Cesium.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="current-tags-part">
+            <ul class="tags-list">
+             <!--   <li class="tags">
+                    <span class="iconfont icon-zhibiao"></span>
+                    <span id="current-temp"></span>
+                </li>
+                <li class="tags">
+                    <span class="iconfont icon-zhibiao"></span>
+                    <span id="current-ph"></span>
+                </li>
+                <li class="tags">
+                    <span class="iconfont icon-zhibiao"></span>
+                    <span id="current-oxgen"></span>
+                </li>
+                <li class="tags">
+                    <span class="iconfont icon-zhibiao"></span>
+                    <span id="current-conductivity"></span>
+                </li>
+                <li class="tags">
+                    <span class="iconfont icon-zhibiao"></span>
+                    <span id="current-turbidity"></span>
+                </li>-->
+            </ul>
+            <p class="pick-date">采集时间：<span id="pick-date">2020-05-22 17:18:00</span></p>
+        </div>
+        <div class="chart-part">
+            <ul class="tab-part">
+                <li class="tab active" data-type="oneWeek">最近7天</li>
+                <li class="tab" data-type="twoWeeks">最近2周</li>
+            </ul>
+            <div id="line-chart" style="width:100%; height:280px;"></div>
+        </div>
+        <div class="around-tags-part">
+            <div class="around-list">
+                <div class="scroll-hide-bar"></div>
+               <!-- <div class="around-list-item">
+                    <span class="address">东溪农场监测站</span>
+                    <div class="ph">
+                        <span class="level iconfont icon-zhibiao"></span>
+                        <span>pH值 6.37mol/L</span>
+                    </div>
+                    <span class="distance"><1000m</span>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var lineChart;
+    //获取图表数据
+    function initLineChart(tag){
+        var req_url = "";
+        switch(tag){
+            case'oneWeek':
+                req_url = "./static/json/lastOneWeekData.json";
+                break;
+            case'twoWeeks':
+                req_url = "./static/json/lastTwoWeekData.json";
+                break;
+            default:
+                req_url = "./static/json/lastOneWeekData.json";
+                break;
+        }
+        $.getJSON(req_url,function(res){
+            if(res.code == 0){
+                if(lineChart){
+                    lineChart.dispose();
+                }
+                lineChart = echarts.init(document.getElementById("line-chart"));
+                var data = res.data;
+                if(data.length !=0){
+                    var legend = [];
+                    var time = data[0].createArray.reverse();
+                    var series = [];
+                    data.forEach(function(item,index){
+                        legend.push(item.name);
+                      var tmp = {
+                          name: item.name,
+                          type: 'line',
+                          data:item.valueArray.reverse()
+                      }
+                      series.push(tmp);
+                    })
+                    var option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                lineStyle: {
+                                    color: '#57617B'
+                                }
+                            }
+                        },
+                        color:['#ff8f25','#5d60ff','#43ff44','#db40ff','#29caff'],
+                        legend: {
+                            icon: 'rect',
+                            itemWidth: 14,
+                            itemHeight: 5,
+                            itemGap: 13,
+                            data: legend,
+                            right: '4%',
+                            top:20,
+                            textStyle: {
+                                fontSize: 12,
+                                color: '#F1F1F3'
+                            }
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '7%',
+                            containLabel: true
+                        },
+                        xAxis: [{
+                            type: 'category',
+                            boundaryGap: false,
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#FFF'
+                                }
+                            },
+                            axisLabel:{
+                                show:true,
+                                formatter:function(value,index){
+                                    var time = value.split(" ");
+                                    return time[0]+"\n"+time[1];
+                                },
+                                color:'#FFF'
+                            },
+                            data:time
+                        }],
+                        yAxis: [{
+                            type: 'value',
+                            name: '数值',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#FFF'
+                                }
+                            },
+                            axisLabel: {
+                                show:false,
+                                margin: 10,
+                                textStyle: {
+                                    fontSize: 14
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: '#FFF',
+                                    type:'dashed'
+                                }
+                            }
+                        }],
+                        series: series
+                    };
+                    lineChart.setOption(option)
+                }
+            }else{
+                layui.layer.msg("数据请求失败");
+                return;
+            }
+        })
+
+
+    }
+    //获取距离
+    function getDisTance(startPoint,endPoint){
+        var distance = 0;
+        var startCartographic = Cesium.Cartographic.fromDegrees(startPoint.longitude,startPoint.latitude);
+        var endCartographic = Cesium.Cartographic.fromDegrees(endPoint.longitude,endPoint.latitude);
+        /**根据经纬度计算出距离**/
+        var geodesic = new Cesium.EllipsoidGeodesic();
+        geodesic.setEndPoints(startCartographic, endCartographic);
+        distance=geodesic.surfaceDistance.toFixed(2);
+        return Math.ceil(distance);
+    }
+    $(function(){
+        //获取数据
+        var req_data = JSON.parse(decodeURIComponent(location.search.substr(1)).split("=")[1]);
+        console.log(req_data)
+        var startPoint = req_data;
+        //获取监测点工厂
+        $.getJSON('./static/json/factories_data.json',function(res){
+            if(res.code == 0){
+                console.log('res',res)
+                var data = res.data;
+                //过滤监测点工厂
+                var targetList = data.filter(function(item){
+                    if((item.latitude === startPoint.latitude)&&(item.longitude === startPoint.longitude)&&(item.POINTNAME === startPoint.POINTNAME)){
+                        return false;
+                    }else{
+                        var distance = getDisTance(startPoint,item);
+                        item.distance = distance;
+                        return true;
+                    }
+                })
+                console.log('targetList',targetList)
+                if(targetList.length !=0){
+                    //排序targetList
+                    targetList.sort(function(a,b){
+                        return a.distance - b.distance
+                    })
+                    console.log('distance',targetList)
+                    var aroundList = "";
+                    targetList.forEach(function(item){
+                        var levelClass="";
+                        console.log('level',item.pointQualityLevel)
+                        switch(item.pointQualityLevel){
+                            case"Ⅰ":
+                                levelClass = 'level-0';
+                                break;
+                            case"Ⅱ":
+                                levelClass = 'level-1';
+                                break;
+                            case"Ⅲ":
+                                levelClass = 'level-2';
+                                break;
+                            case"Ⅳ":
+                                levelClass = 'level-3';
+                                break;
+                            case"Ⅴ":
+                                levelClass = 'level-4';
+                                break;
+                            case"劣Ⅴ":
+                                levelClass = 'level-5';
+                                break;
+                            case"未知":
+                                levelClass = 'no-data';
+                                break;
+                            default:
+                                levelClass = 'no-data';
+                                break;
+                        }
+                        aroundList+=" <div class=\"around-list-item\">\n" +
+                            "                    <span class=\"address\">"+item.POINTNAME+"</span>\n" +
+                            "                    <div class=\"ph\">\n" +
+                            "                        <span class=\"level iconfont icon-zhibiao "+levelClass+"\"></span>\n" +
+                            "                        <span>pH值 "+item.pH+"mol/L</span>\n" +
+                            "                    </div>\n" +
+                            "                    <span class=\"distance\"><"+item.distance+"m</span>\n" +
+                            "                </div>";
+                    })
+                    $(".around-list").find(".around-list-item").remove();
+                    $(".around-list").append(aroundList);
+                }
+            }else{
+                layui.layer.msg('获取数据失败');
+            }
+        })
+
+        //获取指标数据
+        $.getJSON('./static/json/monitorValue.json',function(res){
+            if(res.code == 0);
+            var data = res.data.list;
+            data.forEach(function(item){
+                var $li = $(" <li class=\"tags\">" +
+                                "<div class=\"left\">" +
+                                    "<span class=\"iconfont icon-zhibiao\"></span>" +
+                                    "<span class=\"tag-name\"></span>"+
+                                "</div>"+
+                                "<span class=\"current-tags-value\"></span>" +
+                            "</li>")
+                var levelClass = "";
+                var unit = "";
+                switch(item.pollutantName){
+                    case'水温':
+                        unit = "°C";
+                        break;
+                    case'pH 值':
+                        unit="mol/L";
+                        break;
+                    case'溶解氧':
+                        unit="%";
+                        break;
+                    case'电导率':
+                        unit="S/m";
+                        break;
+                    case'浑浊度':
+                        unit="NTU";
+                        break;
+                }
+                switch(item.resultQualityName){
+                    case"Ⅰ类":
+                        levelClass = 'level-0';
+                        break;
+                    case"Ⅱ类":
+                        levelClass = 'level-1';
+                        break;
+                    case"Ⅲ类":
+                        levelClass = 'level-2';
+                        break;
+                    case"Ⅳ类":
+                        levelClass = 'level-3';
+                        break;
+                    case"Ⅴ类":
+                        levelClass = 'level-4';
+                        break;
+                    case"劣Ⅴ类":
+                        levelClass = 'level-5';
+                        break;
+                    case"未知":
+                        levelClass = 'no-data';
+                        break;
+                    default:
+                        levelClass = 'no-data';
+                        break;
+                }
+                //设置图标颜色
+                $li.find(".iconfont").addClass(levelClass);
+                //设置指标名称
+                $li.find(".tag-name").html(item.pollutantName);
+                //设置指标值
+                $li.find(".current-tags-value").html(item.pollutantValue+unit);
+                $(".tags-list").append($li);
+                //设置采集时间
+                $("#pick-date").html(item.updateTime)
+            })
+        })
+        //初始化图表信息
+        initLineChart('oneWeek');
+        //监听1周还是2周点击事件
+        $(".tab").on('click',function(){
+            var type = $(this).attr("data-type");
+            $(".tab").removeClass("active");
+            $(this).addClass("active");
+            initLineChart(type);
+        })
+    })
+</script>
+</html>

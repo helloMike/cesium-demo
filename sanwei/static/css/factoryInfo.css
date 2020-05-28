@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #3F4C82;
+}
+.wrapper {
+  width: 460px;
+  height: auto;
+}
+.wrapper .current-tags-part {
+  width: 100%;
+  height: auto;
+  background: #2c365d;
+  box-sizing: border-box;
+  padding: 10px 20px;
+}
+.wrapper .current-tags-part .tags-list {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row ;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.wrapper .current-tags-part .tags-list li {
+  width: 47%;
+  flex: 0 0 1;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: #FFF;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+.wrapper .current-tags-part .tags-list li:nth-child(2n+1) {
+  padding-right: 20px;
+}
+.wrapper .current-tags-part .tags-list li .iconfont {
+  color: #FFF;
+  margin-right: 5px;
+}
+.wrapper .current-tags-part .tags-list li .iconfont.level-0 {
+  color: #2ba4e9 !important;
+}
+.wrapper .current-tags-part .tags-list li .iconfont.level-1 {
+  color: #54C5E9 !important;
+}
+.wrapper .current-tags-part .tags-list li .iconfont.level-2 {
+  color: #45b97c !important;
+}
+.wrapper .current-tags-part .tags-list li .iconfont.level-3 {
+  color: #FFFF00 !important;
+}
+.wrapper .current-tags-part .tags-list li .iconfont.level-4 {
+  color: #f47920 !important;
+}
+.wrapper .current-tags-part .tags-list li .iconfont.level-5 {
+  color: #d02032 !important;
+}
+.wrapper .current-tags-part .tags-list li .iconfont.no-data {
+  color: #b8b8b8 !important;
+}
+.wrapper .current-tags-part .pick-date {
+  color: #FFF;
+  text-align: right;
+}
+.wrapper .chart-part {
+  width: 100%;
+  height: 320px;
+  background: #2c365d;
+  box-sizing: border-box;
+  padding: 0px 15px;
+}
+.wrapper .chart-part .tab-part {
+  width: 100%;
+  height: 46px;
+  border-bottom: 2px solid #46D3CD;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.wrapper .chart-part .tab-part li {
+  padding: 10px;
+  color: #FFF;
+  position: relative;
+  font-size: 14px;
+}
+.wrapper .chart-part .tab-part li.active {
+  color: #46D3CD;
+  font-weight: bold;
+}
+.wrapper .chart-part .tab-part li.active:after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: #46D3CD;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 2px);
+  border-radius: 50%;
+}
+.wrapper .around-tags-part {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  margin-top: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+.wrapper .around-tags-part .scroll-hide-bar {
+  width: 20px;
+  height: 100%;
+  background: #3E4C82;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.wrapper .around-tags-part .around-list {
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.wrapper .around-tags-part .around-list .around-list-item {
+  width: 100%;
+  height: auto;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  color: #FFF;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.wrapper .around-tags-part .around-list .around-list-item .address {
+  width: 300px;
+  flex: 0 0 1;
+  text-align: left;
+}
+.wrapper .around-tags-part .around-list .around-list-item .ph {
+  width: 300px;
+  flex: 0 0 1;
+  text-align: left;
+}
+.wrapper .around-tags-part .around-list .around-list-item .ph .level-0 {
+  color: #2ba4e9 !important;
+}
+.wrapper .around-tags-part .around-list .around-list-item .ph .level-1 {
+  color: #54C5E9 !important;
+}
+.wrapper .around-tags-part .around-list .around-list-item .ph .level-2 {
+  color: #45b97c !important;
+}
+.wrapper .around-tags-part .around-list .around-list-item .ph .level-3 {
+  color: #FFFF00 !important;
+}
+.wrapper .around-tags-part .around-list .around-list-item .ph .level-4 {
+  color: #f47920 !important;
+}
+.wrapper .around-tags-part .around-list .around-list-item .ph .level-5 {
+  color: #d02032 !important;
+}
+.wrapper .around-tags-part .around-list .around-list-item .ph .no-data {
+  color: #b8b8b8 !important;
+}
+.wrapper .around-tags-part .around-list .around-list-item .distance {
+  text-align: right;
+  font-size: 12px;
+  color: #828282;
+}
+/*# sourceMappingURL=factoryInfo.css.map */

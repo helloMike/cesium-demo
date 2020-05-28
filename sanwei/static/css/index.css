@@ -1,0 +1,206 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+#cesiumContainer {
+  width: 100%;
+  height: 100%;
+}
+#cesiumContainer .cesium-viewer-bottom {
+  display: none;
+}
+.map-legend-container {
+  padding: 8px 0px 8px 20px;
+  background-color: #041825;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+.map-legend-container .item {
+  width: 60px;
+  float: left;
+  text-align: center;
+  line-height: 2.6;
+  font-size: 14px;
+}
+.map-legend-container .grade-legend .legend {
+  width: 240px;
+  text-align: left;
+  line-height: 1.6;
+}
+.map-legend-container .grade-legend .legend .item {
+  float: none;
+}
+.map-legend-container .title {
+  overflow: hidden;
+}
+.map-legend-container .grade-legend {
+  overflow: hidden;
+}
+.map-legend-container .grade-legend .item {
+  height: 10px;
+}
+.map-legend-container .num {
+  overflow: hidden;
+  margin-left: -30px;
+}
+.grade-legend .excellent {
+  background-color: #00E400 !important;
+}
+.grade-legend .good {
+  background-color: #FFFF00 !important;
+}
+.grade-legend .mild {
+  background-color: #FF7E00 !important;
+}
+.grade-legend .moderate {
+  background-color: #FF0000 !important;
+}
+.grade-legend .severe {
+  background-color: #99004C !important;
+}
+.grade-legend .dangerous {
+  background-color: #7E0023 !important;
+}
+.grade-legend-text .excellent {
+  color: #00E400 !important;
+}
+.grade-legend-text .good {
+  color: #f0dc00 !important;
+}
+.grade-legend-text .mild {
+  color: #FF7E00 !important;
+}
+.grade-legend-text .moderate {
+  color: #FF0000 !important;
+}
+.grade-legend-text .severe {
+  color: #99004C !important;
+}
+.grade-legend-text .dangerous {
+  color: #7E0023 !important;
+}
+.grade-legend-text .not_data {
+  color: #b8b8b8 !important;
+}
+/*水*/
+.grade-legend .water_excellent {
+  background-color: #2ba4e9 !important;
+}
+.grade-legend .water_good {
+  background-color: #54C5E9 !important;
+}
+.grade-legend .water_mild {
+  background-color: #45b97c !important;
+}
+.grade-legend .water_moderate {
+  background-color: #FFFF00 !important;
+}
+.grade-legend .water_severe {
+  background-color: #f47920 !important;
+}
+.grade-legend .water_dangerous {
+  background-color: #d02032 !important;
+}
+.grade-legend-text .water_excellent {
+  color: #2ba4e9 !important;
+}
+.grade-legend-text .water_good {
+  color: #2ba4e9 !important;
+}
+.grade-legend-text .water_mild {
+  color: #45b97c !important;
+}
+.grade-legend-text .water_moderate {
+  color: #FFFF00 !important;
+}
+.grade-legend-text .water_severe {
+  color: #f47920 !important;
+}
+.grade-legend-text .water_dangerous {
+  color: #d02032 !important;
+}
+.grade-legend .item {
+  background-color: #b8b8b8;
+}
+.grade-legend .legend {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1;
+  vertical-align: middle;
+}
+.grade-legend .legend .item {
+  background: #b8b8b8;
+  width: 18px;
+  height: 12px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  margin-right: 4px;
+  margin-left: 6px;
+}
+.grade-legend .level-0 {
+  background-color: #c52a2b !important;
+}
+.grade-legend .level-1 {
+  background-color: #95db99 !important;
+}
+.grade-legend .level-2 {
+  background-color: #2ba4e9 !important;
+}
+.grade-legend .level-3 {
+  background-color: #f8af1d !important;
+}
+.grade-legend .level-4 {
+  background-color: #fe8a57 !important;
+}
+.grade-legend .level-5 {
+  background-color: #e84cee !important;
+}
+.grade-legend .level-6 {
+  background-color: #9587f1 !important;
+}
+.grade-legend .online {
+  background-color: #65b149 !important;
+}
+.grade-legend .offline {
+  background-color: #c52a2b !important;
+}
+.layui-layer .layui-layer-title {
+  background: #3F4C82;
+  color: #FFF;
+  border-bottom: none;
+  padding: 10px 80px 10px 20px;
+  font-size: 18px;
+}
+.layui-layer #factoryInfo {
+  background: #313C5E;
+  color: #FFF;
+}
+.layui-layer .layui-layer-btn {
+  padding: 15px 15px 17px;
+  background: #3F4C82;
+  color: #FFF;
+}
+.layui-layer .layui-layer-btn .layui-layer-btn0 {
+  width: 80%;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 5px;
+  font-size: 18px;
+  background: #2CD1CD;
+}
+.layui-layer .layui-layer-setwin {
+  top: 25px;
+}
+/*# sourceMappingURL=index.css.map */
