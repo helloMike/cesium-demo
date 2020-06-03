@@ -11,6 +11,7 @@
     <meta http-equiv="Expires" content="0">
     <link rel="stylesheet" href="./static/js/layui-v2.4.5/layui/css/layui.css">
     <link rel="stylesheet" type="text/css" href="./static/cesium/Widgets/widgets.css" />
+    <link rel="stylesheet" href="./static/iconfont/iconfont.css">
     <link rel="stylesheet" href="./static/css/index.css">
     <script type="text/javascript" src="./static/js/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="./static/js/layui-v2.4.5/layui/layui.all.js"></script>
@@ -20,7 +21,7 @@
 </head>
 <body>
     <div id="cesiumContainer"></div>
-    <div class="map-legend-container" style="z-index: 998;position:absolute;bottom:0px;left:0px;">
+    <div class="map-legend-container">
         <div class="grade-legend">
             <div class="legend" style="width:400px;color:#fff">
                 <span class="item water_excellent"></span>Ⅰ
@@ -33,7 +34,96 @@
             </div>
         </div>
     </div>
+    <ul class="warn-list">
+       <!-- <li class="warn-list-item">
+            <p class="first-part">
+                <span class="compare-warn">[对比报警]</span>
+                <span class="location-warn">漳州市龙文区点位，PH值报警</span>
+            </p>
+            <p class="second-part">
+                <span class="date">03-18 20:30</span>
+                <span class="location-detail">
+                    <span class="location" onclick="location(event)" data-position="">定位</span>
+                    <span class="detail" onclick="checkDetail(event)" data-detailData="">详情</span>
+                </span>
+            </p>
+        </li>-->
+    </ul>
+    <div class="warn-label" onclick="showHideList()">
+        <span class="iconfont icon-jingbao"></span>
+        报警信息
+    </div>
 	<script>
+        //显示隐藏列表
+        function showHideList(){
+           var $list = $(".warn-list");
+           if($list.hasClass('hide')){
+               $list.removeClass("hide");
+           }else{
+               $list.addClass("hide");
+           }
+        }
+        //定位
+        function findLocation(event){
+            var $target = $(event.currentTarget);
+            var lng = $target.attr("data-lng");
+            var lat = $target.attr("data-lat");
+            console.log('lng',lng,'lat',lat);
+            //移动相机
+            var height=viewer.camera.positionCartographic.height > 15000 ? 15000:viewer.camera.positionCartographic.height<1000?15000:viewer.camera.positionCartographic.height;
+            viewer.camera.flyTo({
+                // Cesium的坐标是以地心为原点，一向指向南美洲，一向指向亚洲，一向指向北极州
+                // fromDegrees()方法，将经纬度和高程转换为世界坐标
+                destination:Cesium.Cartesian3.fromDegrees(lng,lat,height),
+                orientation:{
+                    // 指向
+                    heading:0.25304509312017665,
+                    // 视角
+                    pitch:-1.5706575951530484,
+                    roll:0.0
+                },
+                duration:1.5
+            });
+        }
+        //详情
+        function checkDetail(event){
+            var $target = $(event.currentTarget);
+            var data = $target.attr("data-detailData")
+            data = JSON.parse(decodeURIComponent(data));
+            console.log('data',data)
+            var lng = data.longitude;
+            var lat = data.latitude;
+            var height=viewer.camera.positionCartographic.height > 15000 ? 15000:viewer.camera.positionCartographic.height<1000?15000:viewer.camera.positionCartographic.height;
+            viewer.camera.flyTo({
+                // Cesium的坐标是以地心为原点，一向指向南美洲，一向指向亚洲，一向指向北极州
+                // fromDegrees()方法，将经纬度和高程转换为世界坐标
+                destination:Cesium.Cartesian3.fromDegrees(lng,lat,height),
+                orientation:{
+                    // 指向
+                    heading:0.25304509312017665,
+                    // 视角
+                    pitch:-1.5706575951530484,
+                    roll:0.0
+                },
+                duration:1.5,
+                complete:function(){
+                    //弹出框
+                    var layer = layui.layer;
+                    layer.open({
+                        id:'factoryInfo',
+                        title:data.POINTNAME,
+                        type: 2,
+                        content:'./factoryInfo.html?data='+encodeURIComponent(JSON.stringify(data)),
+                        area:['460px','780px'],
+                        offset:'l',
+                        btn:['关闭'],
+                        btnAlign:'c',
+                        shade:0.3,
+                        shadeClose:true
+                    })
+                }
+            });
+        }
         //加载完图形后执行的内容
         function callback(){
             //获取各个厂的数据
@@ -43,13 +133,14 @@
                     var data = res.data;
                     if(data && data.length != 0){
                         data.forEach(function(point){
-                            console.log('point',point)
+                            console.log('point',point);
+                            //添加标注点
                             var color = "";
                             var billboard={
                                 image: './static/images/station1.png',
                                 width: 35,
                                 height: 35,
-                            }
+                            };
                             switch(point.type){
                                 case 1:
                                     switch(point.pointQualityLevel){
@@ -133,7 +224,44 @@
                                     pixelOffset : new Cesium.Cartesian2(0, 20)
                                 },
                                 layload:point
-                            })
+                            });
+
+                            //添加警报点
+                            if(point.pointQualityLevel == "劣Ⅴ"){
+                                //获取改站点的检测值数据查看某项报警
+                                $.getJSON('./static/json/monitorValue.json',function(res){
+                                    var warnList = "";
+                                    var warnTag="";
+                                    var createTime="";
+                                    if(res.code == 0){
+                                        var data = res.data.list;
+                                        if(data && data.length !=0){
+                                            for(var i=0;i<data.length;i++){
+                                                var tmp = data[i];
+                                                if(tmp.resultQualityName == "劣Ⅴ类"){
+                                                    warnTag = tmp.pollutantName;
+                                                    createTime = tmp.updateTime.split(".")[0];
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        warnList="<li class=\"warn-list-item\">\n" +
+                                            "            <p class=\"first-part\">\n" +
+                                            "                <span class=\"compare-warn\">[对比报警]</span>\n" +
+                                            "                <span class=\"location-warn\">"+point.POINTNAME+"点位，"+warnTag+"报警</span>\n" +
+                                            "            </p>\n" +
+                                            "            <p class=\"second-part\">\n" +
+                                            "                <span class=\"date\">"+createTime+"</span>\n" +
+                                            "                <span class=\"location-detail\">\n" +
+                                            "                    <span class=\"location\" onclick=\"findLocation(event)\" data-lng=\""+point.longitude+"\" data-lat=\""+point.latitude+"\">定位</span>\n" +
+                                            "                    <span class=\"detail\" onclick=\"checkDetail(event)\" data-detailData=\""+encodeURI(JSON.stringify(point))+"\">详情</span>\n" +
+                                            "                </span>\n" +
+                                            "            </p>\n" +
+                                            "        </li>";
+                                        $(".warn-list").append(warnList)
+                                    }
+                                })
+                            }
                         })
                         //监听点击事件
                         var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
@@ -144,7 +272,7 @@
                                 var lng = pick.id._layload.longitude;
                                 var lat =  pick.id._layload.latitude;
                                 //移动相机
-                                var height=viewer.camera.positionCartographic.height > 15000 ? 15000:viewer.camera.positionCartographic.height;
+                                var height=viewer.camera.positionCartographic.height > 15000 ? 15000:viewer.camera.positionCartographic.height<1000?15000:viewer.camera.positionCartographic.height;
                                 console.log('height',height)
                                 viewer.camera.flyTo({
                                     // Cesium的坐标是以地心为原点，一向指向南美洲，一向指向亚洲，一向指向北极州
@@ -169,7 +297,9 @@
                                             area:['460px','780px'],
                                             offset:'l',
                                             btn:['关闭'],
-                                            btnAlign:'c'
+                                            btnAlign:'c',
+                                            shade:0.3,
+                                            shadeClose:true
                                         })
                                     }
                                 });

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="./static/js/layui-v2.4.5/layui/css/layui.css">
+    <link rel="stylesheet" href="./static/iconfont/iconfont.css">
+    <link rel="stylesheet" href="./static/css/login.css"/>
+    <script type="text/javascript" src="./static/js/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="./static/js/layui-v2.4.5/layui/layui.all.js"></script>
+    <script>
+        $(function(){
+            var layer = layui.layer;
+            $(".login-btn").on('click',function(){
+                var index = layer.load(1, {
+                    shade: [0.3,'#fff'], //0.1透明度的白色背景,
+                    time: 2000,
+                    end:function(){
+                        location.href = 'index.html';
+                    }
+                });
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="title-part">
+            <img src="./static/images/logo.png" alt="">
+            <p class="title">
+                污染源档案
+            </p>
+        </div>
+        <div class="login-main-part">
+            <p class="login-main-title">用户登录</p>
+            <div class="input-part">
+                <div class="input-part-item">
+                    <input type="text" id="username" class="username" placeholder="请输入用户名" autocomplete="off">
+                </div>
+                <div  class="input-part-item">
+                    <input type="password" id="pwd" class="pwd" placeholder="请输入密码">
+                </div>
+                <div  class="input-part-item checkbox-part">
+                    <input class="checkbox-input" id="checkbox" type="checkbox" name="demo-checkbox1">
+                    <label class="checkbox" for="checkbox"></label>
+                    <span class="checkboxLabel">记住密码</span>
+                   <!-- <input type="checkbox" name="rememberPwd" id="rememberPwd">
+                    <label for="rememberPwd">记住密码</label>-->
+                </div>
+                <button type="button" class="login-btn" >登录</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

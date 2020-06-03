@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>展示数据</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="./static/js/bootstrap/dist/bootstrap.css"/>
+    <link rel="stylesheet" href="./static/css/displayData.css">
+    <link rel="stylesheet" href="./static/iconfont/iconfont.css">
+    <script src="./static/js/jquery/2.1.4/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="./static/js/bootstrap/dist/bootstrap.3.3.7.min.js"></script>
+    <script type="text/javascript" src="./static/js/echarts-4.8.0.min.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="header">
+            <a href="./displayData.html" class="logo-part">
+                <img src="./static/images/logo.png" alt="">
+                <span class="platform-name">污染源档案</span>
+            </a>
+            <div id="logout">
+                <a href="#">
+                    <span class="iconfont icon-084tuichu"></span>
+                    退出
+                </a>
+            </div>
+            <div id="user">
+                <a href="#">
+                    <img src="./static/images/user-default-pic.png" alt="">
+                    孙正飞
+                </a>
+            </div>
+            <ul id="nav-list">
+                <li class="nav-list-item active">
+                    <a href="#">
+                        <span class="iconfont icon-shouye"></span>
+                        首页
+                    </a>
+                </li>
+                <li class="nav-list-item ">
+                    <a href="./integratedQuery.html">
+                        <span class="iconfont icon-chaxun"></span>
+                        综合查询
+                    </a>
+                </li>
+                <li class="nav-list-item ">
+                    <a href="">
+                        <span class="iconfont icon-zhibiao"></span>
+                        数据导读
+                    </a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="nav-part">
+            <ul class="nav-bar">
+                <li class="nav-bar-item">
+                    <a href="#">
+                        污染源档案
+                    </a>
+                </li>
+                <li class="nav-bar-item">
+                    <a href="#">
+                        首页
+                    </a>
+                </li>
+            </ul>
+            <a href="#" id="back">
+                <span class="iconfont icon-zuojiantou"></span>
+            </a>
+        </div>
+        <div class="main">
+            <ul class="num-tags-list">
+                <li class="num-tags-list-item xm">
+                    <p class="num" alt="">57,865</p>
+                    <p class="tag" alt="">项目审批/个</p>
+                    <img src="./static/images/xm.png" alt="" class="tag-icon">
+                </li>
+                <li class="num-tags-list-item jc">
+                    <p class="num">2,534</p>
+                    <p class="tag">监察执法/件</p>
+                    <img src="./static/images/jc.png" alt="" class="tag-icon">
+                </li>
+                <li class="num-tags-list-item hj">
+                    <p class="num">201</p>
+                    <p class="tag">环境应急/件</p>
+                    <img src="./static/images/hj.png" alt="" class="tag-icon">
+                </li>
+                <li class="num-tags-list-item zw">
+                    <p class="num">73</p>
+                    <p class="tag">重污染天气预警/个</p>
+                    <img src="./static/images/zw.png" alt="" class="tag-icon">
+                </li>
+                <li class="num-tags-list-item xz">
+                    <p class="num">3,663</p>
+                    <p class="tag">行政处罚/个</p>
+                    <img src="./static/images/xz.png" alt="" class="tag-icon">
+                </li>
+            </ul>
+            <ul class="data-chart-list">
+                <li class="data-chart-list-item">
+                    <div class="title-more">
+                        <p class="title">空气质量现状</p>
+                        <div class="more">
+                            <p class="update-time">
+                                <span>更新时间</span>
+                                <span>9:00</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="data-chart-list-item-content">
+                        <div class="left" id="air-chart">
+
+                        </div>
+                        <ul class="right" id="air-value-list">
+                            <li class="air-value">
+                                <p class="air-name">PM2.5</p>
+                                <p class="air-value">13</p>
+                                <div class="progress">
+                                    <div class="progress-bar  progress-bar-striped active"
+                                         role="progressbar"
+                                         aria-valuenow="13"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100"
+                                         style="width:13%;">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="air-value">
+                                <p class="air-name">PM10</p>
+                                <p class="air-value">20</p>
+                                <div class="progress">
+                                    <div class="progress-bar"
+                                         role="progressbar"
+                                         aria-valuenow="20"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100"
+                                         style="width:20%;">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="air-value">
+                                <p class="air-name">SO2</p>
+                                <p class="air-value">3</p>
+                                <div class="progress">
+                                    <div class="progress-bar"
+                                         role="progressbar"
+                                         aria-valuenow="3"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100"
+                                         style="width:3%;">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="air-value">
+                                <p class="air-name">O3</p>
+                                <p class="air-value">7</p>
+                                <div class="progress">
+                                    <div class="progress-bar"
+                                         role="progressbar"
+                                         aria-valuenow="7"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100"
+                                         style="width:7%;">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="air-value">
+                                <p class="air-name">NO2</p>
+                                <p class="air-value">13</p>
+                                <div class="progress">
+                                    <div class="progress-bar"
+                                         role="progressbar"
+                                         aria-valuenow="13"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100"
+                                         style="width:13%;">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="air-value">
+                                <p class="air-name">CO</p>
+                                <p class="air-value">29</p>
+                                <div class="progress">
+                                    <div class="progress-bar"
+                                         role="progressbar"
+                                         aria-valuenow="29"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100"
+                                         style="width:29%;">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="data-chart-list-item">
+                    <div class="title-more">
+                        <p class="title">水质类别占比</p>
+                        <div class="more"></div>
+                    </div>
+                    <div class="data-chart-list-item-content">
+                        <div class="left" id="szzb-chart">
+
+                        </div>
+                        <div class="right" id="dbl-chart">
+
+                        </div>
+                    </div>
+                </li>
+                <li class="data-chart-list-item">
+                    <div class="title-more">
+                        <p class="title">项目审批</p>
+                        <div class="more">
+                            <select name="" id=""></select>
+                        </div>
+                    </div>
+                </li>
+                <li class="data-chart-list-item">
+                    <div class="title-more">
+                        <p class="title">监察执法</p>
+                        <div class="more"></div>
+                    </div>
+                </li>
+                <li class="data-chart-list-item">
+                    <div class="title-more">
+                        <p class="title">重度污染天气预警</p>
+                        <div class="more"></div>
+                    </div>
+                </li>
+                <li class="data-chart-list-item">
+                    <div class="title-more">
+                        <p class="title">环境应急</p>
+                        <div class="more"></div>
+                    </div>
+                </li>
+                <li class="data-chart-list-item">
+                    <div class="title-more">
+                        <p class="title">行政处罚情况</p>
+                        <div class="more"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    //dom
+    var airChartDom = document.getElementById('air-chart');
+    var szzbChartDom = document.getElementById('szzb-chart');
+    var dblChartDom = document.getElementById('dbl-chart');
+
+    //echarts
+    var airChart,szzbChart,dblChart;
+    //获取空气质量现状数据
+    function getAirChartData(){
+        if(airChart){
+            airChart.dispose();
+        }
+        airChart = echarts.init(airChartDom);
+        var option = {
+            angleAxis: {
+                axisLine: {
+                    show: false
+                },
+                axisLabel: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                min: 0,
+                max: 120,
+                boundaryGap: ['0', '100'],
+                startAngle: 240
+            },
+            radiusAxis: {
+                type: 'category',
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    show: false
+                },
+                data: ['','','a', 'c'],
+                z: 10
+            },
+            polar: {},
+            series: [{
+                type: 'bar',
+                data: [,,,35],
+                z: 1,
+                coordinateSystem: 'polar',
+                name: 'a',
+                roundCap: true,
+                color: '#02B81C',
+                barGap: '-100%'
+            }, {
+                type: 'bar',
+                data: [,,,100],
+                z: 0,
+                silent: true,
+                coordinateSystem: 'polar',
+                name: 'c',
+                roundCap: true,
+                color: '#F4F4F4',
+                barGap: '-100%'
+            }],
+            tooltip: {
+                show: false
+            },
+            graphic: [{
+                type: 'group',
+                top: 'middle',
+                left: 'center',
+                id: 'data',
+                children: [
+                    {
+                        type: 'text',
+                        id: 'current',
+                        top:30,
+                        style: {
+                            text: '35',
+                            font: 'bold 40px "Microsoft YaHei", sans-serif',
+                            fill: '#000000',
+                            textAlign: 'center'
+                        }
+                    },
+                    {
+                        type: 'text',
+                        id: 'all',
+                        top: 100,
+                        style: {
+                            text: '优',
+                            font: 'bold 30px "Microsoft YaHei", sans-serif',
+                            fill: '#02B81C',
+                            textAlign: 'center'
+                        }
+                    }
+                ]
+            },{
+                type:'text',
+                id:'primary_pollutant',
+                bottom:10,
+                left:'center',
+                style:{
+                    text:'首要污染物:--',
+                    font:'16px "Microsoft YaHei", sans-serif',
+                    fill:'#000000',
+                    textAlign:'center'
+                }
+            }
+            ]
+        };
+        airChart.setOption(option)
+    }
+    //设置各个空气值
+    function setAirValue(){
+
+    }
+    //水质占比
+    function szzb(){
+        if(szzbChart){
+            szzbChart.dispose();
+        }
+        szzbChart = echarts.init(szzbChartDom);
+        let echartData = [{
+            'name': 'V类',
+            'value': 27
+        }, {
+            'name': 'Ⅱ类',
+            'value': 24
+        }, {
+            'name': 'Ⅲ类',
+            'value': 18
+        }, {
+            'name': 'Ⅳ类',
+            'value': 31
+        }
+        ];
+        let formatNumber = function(num) {
+            let reg = /(?=(\B)(\d{3})+$)/g;
+            return num.toString().replace(reg, ',');
+        }
+        let total = echartData.reduce((a, b) => {
+            return a + b.value * 1
+        }, 0);
+
+        var option = {
+            backgroundColor: '#FFF',
+            color: ['#FF771C', '#0084FF', '#00B71A', '#FBBB02'],
+            // tooltip: {
+            //     trigger: 'item'
+            // },
+            title: [{
+                text:'水质占比',
+                top: 'center',
+                left: 'center',
+                textStyle: {
+                    rich: {
+                        name: {
+                            fontSize: 20,
+                            fontWeight: 'normal',
+                            color: '#666666',
+                            padding: [10, 0]
+                        },
+                        val: {
+                            fontSize: 32,
+                            fontWeight: 'bold',
+                            color: '#333333',
+                        }
+                    }
+                }
+            }],
+            series: [{
+                type: 'pie',
+                radius: ['90px', '120px'],
+                center: ['50%', '50%'],
+                data: echartData,
+                hoverAnimation: false,
+                itemStyle: {
+                    normal: {
+                        borderColor: '#FFF',
+                        borderWidth: 2
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        length: 20,
+                        length2: 80,
+                        lineStyle: {
+                            color: '#e6e6e6'
+                        }
+                    }
+                },
+                label: {
+                    normal: {
+                        formatter: params => {
+                            return (
+                                '{icon|●}{name|' + params.name + '}{value|' +
+                                formatNumber(params.value) + '%}'
+                            );
+                        },
+                        padding: [0 , -100, 25, -100],
+                        rich: {
+                            icon: {
+                                fontSize: 16
+                            },
+                            name: {
+                                fontSize: 16,
+                                padding: [0, 10, 0, 4],
+                                color: '#666666'
+                            },
+                            value: {
+                                fontSize: 16,
+                                color: '#333333'
+                            }
+                        }
+                    }
+                },
+            }]
+        };
+        szzbChart.setOption(option);
+    }
+    //达标率
+    function dbl(){
+        if(dblChart){
+            dblChart.dispose();
+        }
+        dblChart = echarts.init(dblChartDom);
+        var option = {
+            angleAxis: {
+                axisLine: {
+                    show: false
+                },
+                axisLabel: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                min: 0,
+                max: 100,
+                boundaryGap: ['0', '100'],
+                startAngle: 90
+            },
+            radiusAxis: {
+                type: 'category',
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    show: false
+                },
+                data: ['','','a', 'c'],
+                z: 10
+            },
+            polar: {},
+            series: [{
+                type: 'bar',
+                data: [,,,86],
+                z: 1,
+                coordinateSystem: 'polar',
+                name: 'a',
+                roundCap: true,
+                color: '#566FF1',
+                barGap: '-100%'
+            }, {
+                type: 'bar',
+                data: [,,,100],
+                z: 0,
+                silent: true,
+                coordinateSystem: 'polar',
+                name: 'c',
+                roundCap: true,
+                color: '#F4F4F4',
+                barGap: '-100%'
+            }],
+            tooltip: {
+                show: false
+            },
+            graphic: [{
+                type: 'group',
+                top: 'middle',
+                left: 'center',
+                id: 'data',
+                children: [
+                    {
+                        type: 'text',
+                        id: 'current',
+                        top:50,
+                        style: {
+                            text: '86%',
+                            font: 'bold 40px "Microsoft YaHei", sans-serif',
+                            fill: '#566FF1',
+                            textAlign: 'center'
+                        }
+                    },
+                    {
+                        type: 'text',
+                        id: 'all',
+                        top: 100,
+                        style: {
+                            text: '达标率',
+                            font: '30px "Microsoft YaHei", sans-serif',
+                            fill: '#566FF1',
+                            textAlign: 'center'
+                        }
+                    }
+                ]
+            }
+            ]
+        };
+        dblChart.setOption(option)
+    }
+    $(function(){
+        //获取空气质量图表数据
+        getAirChartData();
+        //水质占比
+        szzb();
+        //达标率
+        dbl();
+    })
+</script>
+</html>
