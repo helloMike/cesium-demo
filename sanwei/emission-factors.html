@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排放要素</title>
+    <link rel="stylesheet" href="./static/css/emission-factors.css">
+    <script src="./static/js/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="./static/js/echarts-4.8.0.min.js"></script>
+    <script src="http://api.tianditu.gov.cn/api?v=4.0&tk=1ba28f01e98128de134ad639451eb0b2" type="text/javascript"></script>
+    <script src="./static/js/d3.js" charset="utf-8"></script>
+    <script src="./static/js/D3SvgOverlay.js"></script>
+    <script src="./static/js/CarTrack.js"></script>
+</head>
+<body>
+<div class="page-container">
+    <div class="left">
+        <div id="hyzb" >
+
+        </div>
+        <div id="qxzb">
+
+        </div>
+        <div id="qylxfb">
+
+        </div>
+    </div>
+    <div class="middle">
+        <div id="mapDiv"></div>
+    </div>
+    <div class="right">
+        <div id="gyy">
+            <div class="goToHome-container">
+                <a href="" class="goToHome">
+                    跳转到列表页 >
+                </a>
+                <div class="clearfix"></div>
+            </div>
+            <p class="total-factories">
+                321452
+            </p>
+            <div class="total-factories-label">
+                <div class="line"></div>
+                <div class="factory-label">工业源/家</div>
+            </div>
+        </div>
+        <div class="qy-container">
+            <div id="qyywfb"></div>
+            <div id="qywtfb"></div>
+        </div>
+
+    </div>
+</div>
+</body>
+<script>
+    var hyzbChart,qxzbChart,qylxChart,qyywChart,qywtChart,map,overlayerLabel;
+    var zoom = 9.2;
+    var areas = [];
+    var hyzbDom = document.getElementById("hyzb");
+    var qxzbDom = document.getElementById("qxzb");
+    var qylxDom = document.getElementById("qylxfb");
+    var qyywfbDom = document.getElementById("qyywfb");
+    var qywtDom = document.getElementById("qywtfb");
+    //行业占比
+    function hyzb(){
+        if(hyzbChart){
+            hyzbChart.dispose();
+        }
+        hyzbChart = echarts.init(hyzbDom);
+        let echartData = [
+            {
+                'name': 'V类',
+                'value': 27
+            },
+            {
+                'name': 'Ⅱ类',
+                'value': 24
+            },
+            {
+                'name': 'Ⅲ类',
+                'value': 18
+            },
+            {
+                'name': 'Ⅳ类',
+                'value': 31
+            }
+        ];
+        let formatNumber = function(num) {
+            let reg = /(?=(\B)(\d{3})+$)/g;
+            return num.toString().replace(reg, ',');
+        }
+        let total = echartData.reduce((a, b) => {
+            return a + b.value * 1
+        }, 0);
+
+        var option = {
+            backgroundColor: '#FFF',
+            color: ['#FF771C', '#0084FF', '#00B71A', '#FBBB02'],
+            // tooltip: {
+            //     trigger: 'item'
+            // },
+            title: [{
+                text:'行业占比',
+                top: 'center',
+                left: 'center',
+                textStyle: {
+                    rich: {
+                        name: {
+                            fontSize: 20,
+                            fontWeight: 'normal',
+                            color: '#666666',
+                            padding: [10, 0]
+                        },
+                        val: {
+                            fontSize: 32,
+                            fontWeight: 'bold',
+                            color: '#333333',
+                        }
+                    }
+                }
+            }],
+            series: [{
+                type: 'pie',
+                radius: ['70px', '90px'],
+                center: ['50%', '50%'],
+                data: echartData,
+                hoverAnimation: false,
+                itemStyle: {
+                    normal: {
+                        borderColor: '#FFF',
+                        borderWidth: 2
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        length: 20,
+                        length2: 80,
+                        lineStyle: {
+                            color: '#e6e6e6'
+                        }
+                    }
+                },
+                label: {
+                    normal: {
+                        formatter: params => {
+                            return (
+                                '{icon|●}{name|' + params.name + '}{value|' +
+                                formatNumber(params.value) + '%}'
+                            );
+                        },
+                        padding: [0 , -100, 25, -100],
+                        rich: {
+                            icon: {
+                                fontSize: 16
+                            },
+                            name: {
+                                fontSize: 16,
+                                padding: [0, 10, 0, 4],
+                                color: '#666666'
+                            },
+                            value: {
+                                fontSize: 16,
+                                color: '#333333'
+                            }
+                        }
+                    }
+                },
+            }]
+        };
+        hyzbChart.setOption(option);
+    }
+    //区县占比
+    function qxzb(){
+        if(qxzbChart){
+            qxzbChart.dispose();
+        }
+        qxzbChart = echarts.init(qxzbDom);
+        let echartData = [
+            {
+                'name': 'V类',
+                'value': 27
+            },
+            {
+                'name': 'Ⅱ类',
+                'value': 24
+            },
+            {
+                'name': 'Ⅲ类',
+                'value': 18
+            },
+            {
+                'name': 'Ⅳ类',
+                'value': 31
+            }
+        ];
+        let formatNumber = function(num) {
+            let reg = /(?=(\B)(\d{3})+$)/g;
+            return num.toString().replace(reg, ',');
+        }
+        let total = echartData.reduce((a, b) => {
+            return a + b.value * 1
+        }, 0);
+
+        var option = {
+            backgroundColor: '#FFF',
+            color: ['#FF771C', '#0084FF', '#00B71A', '#FBBB02'],
+            // tooltip: {
+            //     trigger: 'item'
+            // },
+            title: [{
+                text:' 区县占比',
+                top: 'center',
+                left: 'center',
+                textStyle: {
+                    rich: {
+                        name: {
+                            fontSize: 20,
+                            fontWeight: 'normal',
+                            color: '#666666',
+                            padding: [10, 0]
+                        },
+                        val: {
+                            fontSize: 32,
+                            fontWeight: 'bold',
+                            color: '#333333',
+                        }
+                    }
+                }
+            }],
+            series: [{
+                type: 'pie',
+                radius: ['70px', '90px'],
+                center: ['50%', '50%'],
+                data: echartData,
+                hoverAnimation: false,
+                itemStyle: {
+                    normal: {
+                        borderColor: '#FFF',
+                        borderWidth: 2
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        length: 20,
+                        length2: 80,
+                        lineStyle: {
+                            color: '#e6e6e6'
+                        }
+                    }
+                },
+                label: {
+                    normal: {
+                        formatter: params => {
+                            return (
+                                '{icon|●}{name|' + params.name + '}{value|' +
+                                formatNumber(params.value) + '%}'
+                            );
+                        },
+                        padding: [0 , -100, 25, -100],
+                        rich: {
+                            icon: {
+                                fontSize: 16
+                            },
+                            name: {
+                                fontSize: 16,
+                                padding: [0, 10, 0, 4],
+                                color: '#666666'
+                            },
+                            value: {
+                                fontSize: 16,
+                                color: '#333333'
+                            }
+                        }
+                    }
+                },
+            }]
+        };
+        qxzbChart.setOption(option);
+    }
+    //行业类型分类
+    function qylx(){
+        if(qylxChart){
+            qylxChart.dispose();
+        }
+        qylxChart = echarts.init(qylxDom);
+        var data1 = [132, 324, 327, 452, 365];
+        var option = {
+            backgroundColor:'#FFF',
+            title:{
+                text:'企业类型分布' ,
+                left:'center',
+                top:15,
+                textStyle:{
+                    color:'#0090FF'
+                }
+            },
+            grid:{
+                height:'70%'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['废水', '废气', '固废', '重金属', '辐射'],
+                    axisTick: {
+                        show:false,
+                        alignWithLabel: true
+                    },
+                    axisLabel:{
+                        fontSize:16
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    axisLine:{
+                        show:false
+                    },
+                    axisLabel:{
+                        fontSize:16
+                    },
+                }
+            ],
+            series: [
+                {
+                    type: 'bar',
+                    barWidth: '40%',
+                    data: data1,
+                    roundCap: true,
+                    itemStyle:{
+                        color:'#0090FF',
+                        barBorderRadius: 5
+                    }
+                }
+            ]
+        };
+        qylxChart.setOption(option);
+    }
+    //企业业务分布
+    function array2obj(array,key) {
+        var resObj = {};
+        for(var i=0;i<array.length;i++){
+            resObj[array[i][key]] = array[i];
+        }
+        return resObj;
+    }
+    function qyywfb(){
+        if(qyywChart){
+            qyywChart.dispose();
+        }
+        qyywChart = echarts.init(qyywfbDom);
+
+        let color = ['#6A66FF', '#0090FF', '#00C039','#EDA741'];
+        let chartData = [
+            {
+                name: "审批",
+                value: 4000
+            },
+            {
+                name: "监测",
+                value: 200
+            },
+            {
+                name: "处罚",
+                value: 100
+            },
+            {
+                name: "投诉",
+                value: 100
+            }
+        ];
+        let arrName = [];
+        let arrValue = [];
+        let objData = array2obj(chartData, "name");
+        let sum = 0;
+        let pieSeries = [],
+            lineYAxis = [];
+
+        // 数据处理
+        chartData.forEach((v, i) => {
+            arrName.push(v.name);
+            arrValue.push(v.value);
+            sum = sum + v.value;
+        })
+
+        // 图表option整理
+        chartData.forEach((v, i) => {
+            pieSeries.push({
+                type: 'pie',
+                clockWise: false,
+                hoverAnimation: false,
+                radius: [65 - i * 13 + '%', 54 - i * 13 + '%'],
+                center: ["30%", "50%"],
+                label: {
+                    show: false
+                },
+                data: [
+                    {
+                        value: v.value,
+                        name: v.name
+                    },
+                    {
+                        value: sum - v.value,
+                        name: '',
+                        itemStyle: {
+                            color: "rgba(0,0,0,0)"
+                        }
+                    }
+                ]
+            });
+            /*  pieSeries.push({
+                  name: '',
+                  type: 'pie',
+                  silent: true,
+                  z: 1,
+                  clockWise: false, //顺时加载
+                  hoverAnimation: false, //鼠标移入变大
+                  radius: [65 - i * 15 + '%',57 - i * 15 + '%'],
+                  center: ["30%", "50%"],
+                  label: {
+                      show: false
+                  },
+                  data: [{
+                      value: 7.5,
+                      itemStyle: {
+                          color: "#E3F0FF"
+                      }
+                  }, {
+                      value: 2.5,
+                      name: '',
+                      itemStyle: {
+                          color: "rgba(0,0,0,0)"
+                      }
+                  }]
+              });*/
+            v.percent = (v.value / sum * 100).toFixed(1) + "%";
+            lineYAxis.push({
+                value: i,
+                textStyle: {
+                    rich: {
+                        circle: {
+                            color: color[i],
+                            padding: [0, 5]
+                        }
+                    }
+                }
+            });
+        });
+
+        var option = {
+            backgroundColor: '#fff',
+            color: color,
+            legend: {
+                show: true,
+                icon:"roundRect",
+                top: "center",
+                left: '60%',
+                data: arrName,
+                width:50,
+                padding: [0, 5],
+                itemGap: 25,
+                formatter: function(name) {
+                    return "{title|" + name + "}  {value|" + (objData[name].value) +"}  {title|家}"
+                },
+
+                textStyle: {
+                    rich: {
+                        title: {
+                            fontSize: 16,
+                            lineHeight: 15,
+                            color: "#000"
+                        },
+                        value: {
+                            fontSize: 18,
+                            lineHeight: 20,
+                            color: "#000"
+                        }
+                    }
+                },
+            },
+            title:{
+              text:'企业业务分布',
+                left:'center',
+                top:15,
+              textStyle:{
+                  color:'#0752FF',
+                  fontSize:18
+              }
+            },
+            grid: {
+                top: '15%',
+                bottom: '54%',
+                left: "30%",
+                containLabel: false
+            },
+            yAxis: [{
+                type: 'category',
+                inverse: true,
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    formatter: function(params) {
+                        let item = chartData[params];
+                        console.log(item)
+                        return '{icon|}{circle|●}{name|'+ item.name +'}{bd||}{percent|'+item.percent+'}{value|'+ item.value+'}'
+                    },
+                    interval: 0,
+                    inside: true,
+                    textStyle: {
+                        color: "#333",
+                        fontSize: 14,
+                        rich: {
+                            line: {
+                                width: 170,
+                                height: 10
+                            },
+                            name: {
+                                color: '#666',
+                                fontSize: 14,
+                            },
+                            bd: {
+                                color: '#ccc',
+                                padding: [0, 5],
+                                fontSize: 14,
+                            },
+                            percent:{
+                                color: '#333',
+                                fontSize: 14,
+                            },
+                            value: {
+                                color: '#333',
+                                fontSize: 16,
+                                fontWeight: 500,
+                                padding: [0, 0, 0, 20]
+                            },
+                            unit: {
+                                fontSize: 14
+                            }
+                        }
+                    },
+                    show: false
+                },
+                data: lineYAxis
+            }],
+            xAxis: [{
+                show: false
+            }],
+            series: pieSeries
+        };
+        qyywChart.setOption(option);
+    }
+    //企业问题分布
+    function qywtfb(){
+           if(qywtChart){
+               qywtChart.dispose();
+           }
+           qylxChart = echarts.init(qywtDom);
+        var option = {
+            title: {
+                text: '企业问题分布',
+                left:'center',
+                top:15,
+                textStyle:{
+                    color:'#0752FF'
+                }
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01],
+                axisLabel:{
+                    fontSize:16
+                },
+                axisTick:{
+                    show:false
+                },
+                axisLine:{
+                    show:false
+                }
+            },
+            yAxis: {
+                type: 'category',
+                data: ['刺激性气味', '污水直排', '噪音扰民', '无许可证', '热点投诉', '2018黑名单企业'],
+                axisLine:{
+                    show:false
+                },
+                axisTick:{
+                    show:false
+                },
+                axisLabel:{
+                    fontSize:16
+                }
+            },
+            series: [
+                {
+                    name: '2011年',
+                    type: 'bar',
+                    barCategoryGap:'50%',
+                    data: [22, 15, 48, 35, 26, 18],
+                    itemStyle:{
+                        color:'#25BC69',
+                        barBorderRadius: 5
+                    }
+                }
+            ]
+        };
+        qylxChart.setOption(option);
+    }
+    //地图区域绘制
+    var definedOverlay = T.Overlay.extend({
+        initialize: function (lnglat, text, options) {
+            this.lnglat = lnglat;
+            this.setOptions(options);
+            this._text = text;
+        },
+        onAdd: function (map) {
+            this.map = map;
+            var div = this._div = document.createElement("div");
+            div.style.position = "absolute";
+            div.style.backgroundColor = "#EE5D5B";
+            div.style.border = "1px solid #BC3B3A";
+            div.style.color = "white";
+            div.style.height = "18px";
+            div.style.padding = "2px";
+            div.style.lineHeight = "18px";
+            div.style.whiteSpace = "nowrap";
+            div.style.MozUserSelect = "none";
+            div.style.fontSize = "12px";
+            div.style.zIndex = "1000";
+            var span = this._span = document.createElement("span");
+            div.appendChild(span);
+            span.appendChild(document.createTextNode(this._text));
+            var that = this;
+
+            var arrow = this._arrow = document.createElement("div");
+            arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
+            arrow.style.position = "absolute";
+            arrow.style.width = "11px";
+            arrow.style.height = "10px";
+            arrow.style.top = "22px";
+            arrow.style.left = "10px";
+            arrow.style.overflow = "hidden";
+            div.appendChild(arrow);
+            map.getPanes().overlayPane.appendChild(this._div);
+            this.update(this.lnglat);
+        },
+        /**
+         * 更新位置
+         */
+        update: function () {
+            var pos = this.map.lngLatToLayerPoint(this.lnglat);
+            this._div.style.top = ( pos.y - 36) + "px";
+            this._div.style.left = (pos.x - 11) + "px";
+        }
+    });
+    var definedOverlay2 = T.Overlay.extend({
+        initialize: function (lnglat,area,mount, options) {
+            this.lnglat = lnglat;
+            this.setOptions(options);
+            this.area = area;
+            this.mount = mount;
+        },
+        onAdd: function (map) {
+            this.map = map;
+            var div = this._div = document.createElement("div");
+            div.style.position = "absolute";
+            div.style.backgroundColor = "#1C85F4";
+            div.style.border = "1px solid #FFF";
+            div.style.color = "white";
+            div.style.width = "130px";
+            div.style.height = "20px";
+            div.style.padding = "10px";
+            div.style.lineHeight = "18px";
+            div.style.whiteSpace = "nowrap";
+            div.style.MozUserSelect = "none";
+            div.style.fontSize = "12px";
+            div.style.zIndex = "1000";
+            var p_area_node = document.createElement("p");
+            p_area_node.className = 'area';
+            div.appendChild(p_area_node);
+            p_area_node.appendChild(document.createTextNode(this.area+':'));
+            var p_mount_node = document.createElement("p");
+            p_mount_node.className = 'mount';
+            div.appendChild(p_mount_node);
+            p_area_node.appendChild(document.createTextNode("工业源:"+this.mount));
+            map.getPanes().overlayPane.appendChild(this._div);
+            this.update(this.lnglat);
+        },
+        /**
+         * 更新位置
+         */
+        update: function () {
+            var pos = this.map.lngLatToLayerPoint(this.lnglat);
+            this._div.style.top = ( pos.y - 100) + "px";
+            this._div.style.left = (pos.x - 150) + "px";
+        }
+    });
+    function qyhz(){
+        //初始化地图
+        map = new T.Map('mapDiv');
+        map.centerAndZoom(new T.LngLat(117.64247299973,24.51645999973), zoom);//中心点为漳州
+        map.disableDoubleClickZoom();
+        //获取地区工厂数量
+        var loader = parent.layui.layer.load(0, {
+            shade: [0.1,'#fff'] //0.1透明度的白色背景
+        });
+        $.getJSON('./static/json/zz_factories_data.json',function(res){
+            if(res.code == 0){
+                var factories = res.data;
+                console.log('factories',factories)
+                $.getJSON('./static/json/zz.json',function(res){
+                    parent.layui.layer.close(loader);
+                    var features = res.features;
+                    var style = {
+                        color: "#FFF",
+                        weight: 2,
+                        opacity: 1,
+                        strokeStyle : "dashed", //虚线
+                        fillColor : "#0090FF",
+                        fillOpacity : 1 //透明度
+                    };
+                    if(features.length != 0){
+                        features.forEach(function(feature){
+                            var points = feature.geometry.coordinates[0][0];
+                            var tPoints = [];
+                            //添加标注
+                            var center = new T.LngLat(feature.properties.centroid[0],feature.properties.centroid[1]);
+                            var label = new T.Label({
+                                text: feature.properties.name,
+                                position: center,
+                                offset: new T.Point(-40, 0)
+                            });
+                            label.setBackgroundColor("transparent").setBorderLine(0);
+                            map.addOverLay(label);
+
+                            //绘制标注
+                            var factory = factories.find(function(item){
+                                return item.name ==feature.properties.name;
+                            })
+                            if(factory){
+                                var pdefinedOverlay = new definedOverlay(center, factory.mount,{});
+                                map.addOverLay(pdefinedOverlay);
+                            }
+                            //绘制区域
+                            points.forEach(function(item){
+                                var point = new T.LngLat(item[0],item[1]);
+                                tPoints.push(point);
+                            });
+
+                            var area = new T.Polygon(tPoints,style);
+                            area.clicked = false;
+                            console.log('area',area)
+                            map.addOverLay(area);
+                            areas.push(area);
+                            //监听区域点击事件
+                            area.addEventListener('click',function(e){
+                                console.log('this',this.clicked)
+                                if(!this.clicked){
+                                    areas.forEach(function(item){
+                                        item.clicked = false;
+                                        item.setFillColor("#0090FF");
+                                    });
+                                    if(overlayerLabel){
+                                        map.removeOverLay(overlayerLabel);
+                                    }
+                                    overlayerLabel = new definedOverlay2(center,factory.name,factory.mount,{});
+                                    map.addOverLay(overlayerLabel);
+                                    this.clicked = true;
+                                    this.setFillColor("#6A66FF");
+                                }else{
+                                    this.clicked = false;
+                                    this.setFillColor("#0090FF");
+                                    if(overlayerLabel){
+                                        map.removeOverLay(overlayerLabel);
+                                    }
+                                }
+                            })
+
+                            //监听地图点击事件
+
+                        })
+                    }
+                })
+            }else{
+                parent.layui.layer.close(loader);
+                parent.layui.layer.msg(res.msg)
+            }
+        })
+
+    }
+    $(function(){
+        //行业占比
+        hyzb();
+        //区县占比
+        qxzb();
+        //行业类型分类
+        qylx();
+        //企业业务分类
+        qyywfb();
+        //企业问题分类
+        qywtfb();
+        //绘制区域
+        qyhz();
+    })
+</script>
+</html>

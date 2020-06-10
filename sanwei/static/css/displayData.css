@@ -1,0 +1,589 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #ECF0F3;
+}
+body .page-container {
+  width: 100%;
+  height: 100%;
+}
+body .page-container .header {
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  background: -moz-linear-gradient(left, #0030bb 0%, #0030bb 23%, #0030bb 68%, #532cf7 85%, #5e2cff 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, #0030bb), color-stop(23%, #0030bb), color-stop(68%, #0030bb), color-stop(85%, #532cf7), color-stop(100%, #5e2cff));
+  background: -webkit-linear-gradient(left, #0030bb 0%, #0030bb 23%, #0030bb 68%, #532cf7 85%, #5e2cff 100%);
+  background: -o-linear-gradient(left, #0030bb 0%, #0030bb 23%, #0030bb 68%, #532cf7 85%, #5e2cff 100%);
+  background: -ms-linear-gradient(left, #0030bb 0%, #0030bb 23%, #0030bb 68%, #532cf7 85%, #5e2cff 100%);
+  background: linear-gradient(to right, #0030bb 0%, #0030bb 23%, #0030bb 68%, #532cf7 85%, #5e2cff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0030bb', endColorstr='#5e2cff', GradientType=1);
+}
+body .page-container .header .logo-part {
+  text-decoration: none;
+  float: left;
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 20px;
+}
+body .page-container .header .logo-part img {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  background: blue;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+body .page-container .header #nav-list {
+  width: auto;
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  float: right;
+  margin: 0;
+  margin-right: 30px;
+}
+body .page-container .header #nav-list li {
+  margin-right: 15px;
+}
+body .page-container .header #nav-list li.active a,
+body .page-container .header #nav-list li:hover a {
+  background: #0042FF;
+  -moz-box-shadow: -1px 6px 5px #333333;
+  -webkit-box-shadow: -1px 6px 5px #333333;
+  box-shadow: -1px 6px 5px #333333;
+}
+body .page-container .header #nav-list li a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 4px 15px;
+  font-size: 16px;
+  color: #FFF;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: all 300ms ease-in 0ms;
+}
+body .page-container .header #nav-list li a .iconfont {
+  font-size: 20px;
+  margin-right: 10px;
+}
+body .page-container .header #user,
+body .page-container .header #logout {
+  float: right;
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body .page-container .header #user a,
+body .page-container .header #logout a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #FFF;
+  text-decoration: none;
+  padding: 0px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+body .page-container .header #logout a .iconfont {
+  font-size: 24px;
+  margin-right: 10px;
+  transition: all 300ms ease-in 0ms;
+}
+body .page-container .header #logout a:hover .iconfont {
+  font-size: 28px;
+}
+body .page-container .header #user a {
+  border-right: 2px solid #FFF;
+}
+body .page-container .header #user a img {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin-right: 10px;
+  transition: all 300ms ease-in 0ms;
+}
+body .page-container .header #user a:hover img {
+  width: 35px;
+  height: 35px;
+}
+body .page-container .clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+body .page-container .nav-part {
+  width: 100%;
+  box-sizing: border-box;
+  height: auto;
+  background: #FFF;
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+body .page-container .nav-part .nav-bar {
+  list-style: none;
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+}
+body .page-container .nav-part .nav-bar .nav-bar-item a {
+  font-size: 16px;
+  color: #000;
+}
+body .page-container .nav-part .nav-bar .nav-bar-item::after {
+  content: ">";
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 5px;
+  color: #000;
+}
+body .page-container .nav-part .nav-bar .nav-bar-item:last-child:after {
+  content: "";
+}
+body .page-container .nav-part #back {
+  text-decoration: none;
+}
+body .page-container .nav-part #back .icon-zuojiantou {
+  font-size: 22px;
+  transition: all 300ms ease-in 0ms;
+  font-weight: bold;
+}
+body .page-container .main {
+  width: 100%;
+  height: auto;
+}
+body .page-container .main .num-tags-list {
+  list-style: none;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 30px 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+body .page-container .main .num-tags-list .num-tags-list-item {
+  width: 340px;
+  height: 150px;
+  box-sizing: border-box;
+  padding: 30px;
+  margin-right: 20px;
+  background: #ccc;
+  -moz-box-shadow: 2px 2px 5px #333333;
+  -webkit-box-shadow: 2px 2px 5px #333333;
+  box-shadow: 2px 2px 5px #333333;
+  border-radius: 10px;
+  position: relative;
+  transition: all 300ms ease-in 0ms;
+  background-size: 110px 120px;
+}
+body .page-container .main .num-tags-list .num-tags-list-item:hover {
+  -moz-box-shadow: -1px 6px 5px #333333;
+  -webkit-box-shadow: -1px 6px 5px #333333;
+  box-shadow: -1px 6px 5px #333333;
+  transform: translate(5px, -5px);
+}
+body .page-container .main .num-tags-list .num-tags-list-item .tag-icon {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+}
+body .page-container .main .num-tags-list .num-tags-list-item:last-child {
+  margin-right: 0;
+}
+body .page-container .main .num-tags-list .num-tags-list-item .num {
+  position: absolute;
+  z-index: 2;
+  height: 50px;
+  line-height: 50px;
+  width: calc(100% - 60px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 50px;
+  font-weight: bold;
+  color: #FFF;
+  top: 30px;
+  left: 30px;
+}
+body .page-container .main .num-tags-list .num-tags-list-item .tag {
+  position: absolute;
+  z-index: 2;
+  width: calc(100% - 60px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 28px;
+  color: #FFF;
+  margin-bottom: 0;
+  top: 90px;
+  left: 30px;
+}
+body .page-container .main .num-tags-list .num-tags-list-item.xm {
+  background: linear-gradient(115deg, #00b74c 0%, #00b74c 54%, #82e0a9 100%);
+}
+body .page-container .main .num-tags-list .num-tags-list-item.jc {
+  background: linear-gradient(115deg, #086bfc 0%, #086bfc 54%, #5aa2fe 100%);
+}
+body .page-container .main .num-tags-list .num-tags-list-item.zw {
+  background: linear-gradient(115deg, #d87a00 0%, #d87a00 54%, #fbc061 100%);
+}
+body .page-container .main .num-tags-list .num-tags-list-item.hj {
+  background: linear-gradient(115deg, #2c47d6 0%, #2c47d6 54%, #607afb 100%);
+}
+body .page-container .main .num-tags-list .num-tags-list-item.xz {
+  background: linear-gradient(115deg, #641dd8 0%, #641dd8 54%, #9154f9 100%);
+}
+body .page-container .main .data-chart-list {
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 10px 50px 30px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+body .page-container .main .data-chart-list .data-chart-list-item {
+  width: calc(50% - 15px);
+  height: 420px;
+  border-radius: 15px;
+  background: #FFF;
+  -moz-box-shadow: 2px 2px 5px #333333;
+  -webkit-box-shadow: 2px 2px 5px #333333;
+  box-shadow: 2px 2px 5px #333333;
+  box-sizing: border-box;
+  margin: 0px 30px 30px 0px;
+  padding: 30px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item:nth-child(2n) {
+  margin-right: 0;
+}
+body .page-container .main .data-chart-list .data-chart-list-item:last-child {
+  width: 100%;
+  margin-right: 0;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .title-more {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .title-more .title {
+  width: 300px;
+  height: 22px;
+  line-height: 22px;
+  padding: 0 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #000;
+  border-left: 4px solid #0067F1;
+  margin: 0;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .title-more .more .update-time {
+  color: #3154DE;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  height: 22px;
+  line-height: 22px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .title-more .more .update-time span:first-child {
+  margin-right: 10px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .title-more .more .editform {
+  width: 90px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .title-more .more .editform .layui-select-title .layui-input {
+  border: none;
+  color: #566FF1;
+  font-weight: bold;
+  font-size: 16px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .title-more .more .editform .layui-select-title .layui-edge {
+  border-top-color: #566FF1;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .title-more .more .editform .layui-anim dd {
+  text-align: center;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .title-more .more .editform .layui-anim .layui-this {
+  background-color: #3154DE;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content {
+  width: 100%;
+  height: calc(100% - 40px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #air-chart {
+  width: 400px;
+  height: 100%;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #air-value-list {
+  width: calc(100% - 400px);
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #air-value-list .air-value {
+  width: 100px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 30px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #air-value-list .air-value .layui-progress {
+  width: 100px;
+  margin-bottom: 0;
+  height: 14px;
+  border-radius: 15px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #air-value-list .air-value .layui-progress .layui-progress-bar {
+  height: 100%;
+  background-color: #0062D8;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #air-value-list .air-value .air-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #air-value-list .air-value .air-value {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 0;
+  margin-bottom: 15px;
+  color: #848484;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #szzb-chart {
+  width: 400px;
+  height: 100%;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #dbl-chart {
+  width: calc(100% - 400px);
+  height: 100%;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #xmsp-chart,
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #jczf-chart {
+  width: 100%;
+  height: 100%;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #weather-status {
+  width: 120px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20px 0;
+  background: linear-gradient(to bottom, #ffc413 0%, #ffbb0f 20%, #ffa407 51%, #ff9a03 80%, #ff9900 100%);
+  border: 2px solid #EFAE00;
+  border-radius: 10px;
+  -moz-box-shadow: 2px 2px 5px #333333;
+  -webkit-box-shadow: 2px 2px 5px #333333;
+  box-shadow: 2px 2px 5px #333333;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #weather-status .warn {
+  font-size: 14px;
+  text-align: center;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #weather-status .warn .icon-jinggao1 {
+  font-size: 35px;
+  color: #FFF;
+  display: block;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #weather-status .warn #warn-type {
+  color: #d16907;
+  font-weight: bolder;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #weather-status .warn-level {
+  width: 24px;
+  height: auto;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 24px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #weather-status .future72 {
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar {
+  width: calc(100% - 140px);
+  height: 100%;
+  margin-left: 15px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate {
+  width: 100%;
+  height: 100%;
+  border: none;
+  box-shadow: none;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-this {
+  background-color: transparent !important;
+  color: #000 !important;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main {
+  width: 100%;
+  height: 100%;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-header {
+  border: none;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-header .laydate-set-ym {
+  color: #0635DB;
+  font-weight: bold;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-header .laydate-prev-y,
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-header .laydate-next-y {
+  display: none;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-header .laydate-prev-m,
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-header .laydate-next-m {
+  border: 2px solid #0635DB;
+  border-radius: 50%;
+  color: #0635DB;
+  height: 24px;
+  padding: 0 3px;
+  top: 14px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 22px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-header .laydate-prev-m {
+  left: 270px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-header .laydate-next-m {
+  right: 270px;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-content {
+  height: calc(100% - 45px);
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-content table {
+  width: 100%;
+  height: 100%;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-content table tbody tr td {
+  width: auto;
+  margin: 5px 40px;
+  padding: 0;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-content table tbody tr td:hover {
+  background: transparent;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-content table tbody tr td .td-date {
+  display: inline-block;
+  margin: 0 auto;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 50%;
+  text-align: center;
+  background: #E6E6E6;
+  color: #000;
+  font-weight: bold;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-content table tbody tr td .td-date.good {
+  background: #0DD11B;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-content table tbody tr td .td-date.normal {
+  background: #0DD11B;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-content table tbody tr td .td-date.bad {
+  background: #FFE000;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #calendar .layui-laydate .layui-laydate-main .layui-laydate-content table tbody tr td .td-date.terrible {
+  background: #FF5F00;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #hjyj-chart {
+  width: 100%;
+  height: 100%;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #xzcf-left-chart {
+  width: calc(100% - 600px);
+  height: 100%;
+}
+body .page-container .main .data-chart-list .data-chart-list-item .data-chart-list-item-content #xzcf-right-chart {
+  width: 600px;
+  height: 100%;
+}
+body .mt-number-animate {
+  font-family: '微软雅黑';
+  line-height: 50px;
+  height: 50px;
+  /*设置数字显示高度*/
+  font-size: 50px;
+  /*设置数字大小*/
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+}
+body .mt-number-animate .mt-number-animate-dot {
+  width: 15px;
+  /*设置分割符宽度*/
+  line-height: 50px;
+  float: left;
+  text-align: center;
+}
+body .mt-number-animate .mt-number-animate-dom {
+  width: 30px;
+  /*设置单个数字宽度*/
+  text-align: center;
+  float: left;
+  position: relative;
+  top: 0;
+}
+body .mt-number-animate .mt-number-animate-dom .mt-number-animate-span {
+  width: 100%;
+  float: left;
+}
+/*# sourceMappingURL=displayData.css.map */

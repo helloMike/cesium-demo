@@ -145,6 +145,7 @@ body{
     }
     .nav-part{
       width:100%;
+      box-sizing: border-box;
       height:auto;
       background:#FFF;
       padding:10px 30px;
@@ -191,9 +192,11 @@ body{
     .main{
       width:100%;
       height:auto;
+
       .num-tags-list{
         list-style: none;
         width:100%;
+        box-sizing: border-box;
         margin:0;
         padding:30px 50px;
         display: flex;
@@ -207,6 +210,9 @@ body{
           padding:30px;
           margin-right:20px;
           background:#ccc;
+          -moz-box-shadow:2px 2px 5px #333333;
+          -webkit-box-shadow:2px 2px 5px #333333;
+          box-shadow:2px 2px 5px #333333;
           border-radius:10px;
           position: relative;
           transition: all 300ms ease-in 0ms;
@@ -275,6 +281,7 @@ body{
         }
       }
       .data-chart-list{
+        box-sizing: border-box;
         list-style: none;
         margin:0;
         padding:10px 50px 30px;
@@ -290,6 +297,9 @@ body{
           height:420px;
           border-radius: 15px;
           background:#FFF;
+          -moz-box-shadow:2px 2px 5px #333333;
+          -webkit-box-shadow:2px 2px 5px #333333;
+          box-shadow:2px 2px 5px #333333;
           box-sizing: border-box;
           margin:0px 30px 30px 0px;
           padding:30px;
@@ -330,6 +340,28 @@ body{
                   margin-right:10px;
                 }
               }
+              .editform{
+                width:90px;
+                .layui-select-title{
+                  .layui-input{
+                    border:none;
+                    color:#566FF1;
+                    font-weight:bold;
+                    font-size:16px;
+                  }
+                  .layui-edge{
+                    border-top-color:#566FF1;
+                  }
+                }
+                .layui-anim{
+                  dd{
+                    text-align: center;
+                  }
+                  .layui-this{
+                    background-color:#3154DE;
+                  }
+                }
+              }
             }
           }
           .data-chart-list-item-content{
@@ -360,24 +392,27 @@ body{
                 justify-content: flex-start;
                 align-items: center;
                 margin-right:30px;
-                .progress{
+                .layui-progress{
                   width:100px;
                   margin-bottom:0;
                   height:14px;
                   border-radius:15px;
-                  .progress-bar{
+                  .layui-progress-bar{
+                    height:100%;
                     background-color:#0062D8;
                   }
                 }
                 .air-name{
                   font-size:18px;
                   font-weight:bold;
+                  margin-bottom:15px;
                 }
                 .air-value{
                   font-size:20px;
                   font-weight:bold;
                   text-align:center;
                   margin-right:0;
+                  margin-bottom:15px;
                   color:#848484;
                 }
               }
@@ -389,10 +424,163 @@ body{
             #dbl-chart{
               width:calc(100% - 400px);
               height:100%;
-            }
           }
+            #xmsp-chart,#jczf-chart{
+              width:100%;
+              height:100%;
+            }
+            #weather-status{
+              width:120px;
+              height:100%;
+              box-sizing: border-box;
+              padding:20px 0;
+              background: linear-gradient(to bottom, rgba(255,196,19,1) 0%, rgba(255,187,15,1) 20%, rgba(255,164,7,1) 51%, rgba(255,154,3,1) 80%, rgba(255,153,0,1) 100%);
+              border:2px solid #EFAE00;
+              border-radius:10px;
+              -moz-box-shadow:2px 2px 5px #333333;
+              -webkit-box-shadow:2px 2px 5px #333333;
+              box-shadow:2px 2px 5px #333333;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              align-items: center;
+              .warn{
+                font-size:14px;
+                text-align:center;
+                .icon-jinggao1{
+                  font-size: 35px;
+                  color:#FFF;
+                  display: block;
+                }
+                #warn-type{
+                  color: #d16907;
+                  font-weight:bolder;
+                }
+
+              }
+              .warn-level{
+                width:24px;
+                height:auto;
+                color:#FFF;
+                font-weight:bold;
+                font-size:24px;
+              }
+              .future72{
+                color:#000;
+                font-size:14px;
+                font-weight:bold;
+              }
+            }
+            #calendar{
+              width:calc(100% - 140px);
+              height:100%;
+              margin-left:15px;
+              .layui-laydate{
+                width:100%;
+                height:100%;
+                border:none;
+                box-shadow: none;
+                .layui-this{
+                  background-color: transparent !important;
+                  color: #000 !important;
+                }
+                .layui-laydate-main{
+                  width:100%;
+                  height:100%;
+                  .layui-laydate-header{
+                    border:none;
+                    .laydate-set-ym{
+                      color:#0635DB;
+                      font-weight:bold;
+                    }
+                    .laydate-prev-y,.laydate-next-y{
+                      display: none;
+                    }
+                    .laydate-prev-m,.laydate-next-m{
+                      border:2px solid #0635DB;
+                      border-radius:50%;
+                      color:#0635DB;
+                      height:24px;
+                      padding:0 3px;
+                      top:14px;
+                      font-size:14px;
+                      font-weight:bold;
+                      line-height:22px;
+                    }
+                    .laydate-prev-m{
+                      left:270px;
+
+                    }
+                    .laydate-next-m{
+                      right:270px;
+                    }
+                  }
+                  .layui-laydate-content{
+                    height:calc(100% - 45px);
+                    table{
+                      width:100%;
+                      height:100%;
+                      tbody{
+                        tr{
+                          td{
+                            width:auto;
+                            margin:5px 40px;
+                            padding:0;
+                            &:hover{
+                              background:transparent;
+                            }
+                            .td-date{
+                              display: inline-block;
+                              margin:0 auto;
+                              width:30px;
+                              height:30px;
+                              padding:5px;
+                              border-radius:50%;
+                              text-align:center;
+                              background:#E6E6E6;
+                              color:#000;
+                              font-weight:bold;
+                              &.good{
+                                background:#0DD11B;
+                              }
+                              &.normal{
+                                background:#0DD11B;
+                              }
+                              &.bad{
+                                background:#FFE000;
+                              }
+                              &.terrible{
+                                background:#FF5F00;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            #hjyj-chart{
+              width:100%;
+              height:100%;
+            }
+            #xzcf-left-chart{
+              width:calc(100% - 600px);
+              height:100%;
+            }
+            #xzcf-right-chart{
+              width:600px;
+              height:100%;
+            }
         }
       }
     }
   }
+}
+
+  .mt-number-animate{ font-family: '微软雅黑'; line-height:50px; height: 50px;/*设置数字显示高度*/; font-size: 50px;/*设置数字大小*/ overflow: hidden; display: inline-block; position: relative; }
+  .mt-number-animate .mt-number-animate-dot{ width: 15px;/*设置分割符宽度*/ line-height: 50px; float: left; text-align: center;}
+  .mt-number-animate .mt-number-animate-dom{ width: 30px;/*设置单个数字宽度*/ text-align: center; float: left; position: relative; top: 0;}
+  .mt-number-animate .mt-number-animate-dom .mt-number-animate-span{ width: 100%; float: left;}
 }

@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "608208",
+      "name": "标签",
+      "font_class": "biaoqiantags3",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
+      "icon_id": "3881057",
+      "name": "42-实验瓶",
+      "font_class": "-shiyanping",
+      "unicode": "e860",
+      "unicode_decimal": 59488
+    },
+    {
+      "icon_id": "5061003",
+      "name": "设备分组管理",
+      "font_class": "shebeifenzuguanli",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "6527124",
+      "name": "文档",
+      "font_class": "wendang",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "1346659",
+      "name": "警告",
+      "font_class": "jinggao1",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
       "icon_id": "1304897",
       "name": "左箭头",
       "font_class": "zuojiantou",

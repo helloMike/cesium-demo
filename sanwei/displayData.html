@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <title>展示数据</title>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="./static/js/bootstrap/dist/bootstrap.css"/>
+    <!--<link rel="stylesheet" href="./static/js/bootstrap/dist/bootstrap.css"/>-->
+    <link rel="stylesheet" href="./static/js/layui-v2.4.5/layui/css/layui.css">
     <link rel="stylesheet" href="./static/css/displayData.css">
     <link rel="stylesheet" href="./static/iconfont/iconfont.css">
     <script src="./static/js/jquery/2.1.4/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="./static/js/bootstrap/dist/bootstrap.3.3.7.min.js"></script>
+    <!--<script src="./static/js/bootstrap/dist/bootstrap.3.3.7.min.js"></script>-->
+    <script type="text/javascript" src="./static/js/layui-v2.4.5/layui/layui.all.js"></script>
     <script type="text/javascript" src="./static/js/echarts-4.8.0.min.js"></script>
+    <script type="text/javascript" src="./static/js/numberAnimate.js"></script>
 </head>
 <body>
     <div class="page-container">
@@ -33,7 +36,7 @@
             </div>
             <ul id="nav-list">
                 <li class="nav-list-item active">
-                    <a href="#">
+                    <a href="javascript:void(0)">
                         <span class="iconfont icon-shouye"></span>
                         首页
                     </a>
@@ -74,27 +77,27 @@
         <div class="main">
             <ul class="num-tags-list">
                 <li class="num-tags-list-item xm">
-                    <p class="num" alt="">57,865</p>
+                    <p class="num" id="xmsp-num" alt="">57,865</p>
                     <p class="tag" alt="">项目审批/个</p>
                     <img src="./static/images/xm.png" alt="" class="tag-icon">
                 </li>
                 <li class="num-tags-list-item jc">
-                    <p class="num">2,534</p>
+                    <p class="num" id="jczf-num">2,534</p>
                     <p class="tag">监察执法/件</p>
                     <img src="./static/images/jc.png" alt="" class="tag-icon">
                 </li>
                 <li class="num-tags-list-item hj">
-                    <p class="num">201</p>
+                    <p class="num" id="hjyj-num">201</p>
                     <p class="tag">环境应急/件</p>
                     <img src="./static/images/hj.png" alt="" class="tag-icon">
                 </li>
                 <li class="num-tags-list-item zw">
-                    <p class="num">73</p>
+                    <p class="num" id="zwyj-num">73</p>
                     <p class="tag">重污染天气预警/个</p>
                     <img src="./static/images/zw.png" alt="" class="tag-icon">
                 </li>
                 <li class="num-tags-list-item xz">
-                    <p class="num">3,663</p>
+                    <p class="num" id="xzcf-num">3,663</p>
                     <p class="tag">行政处罚/个</p>
                     <img src="./static/images/xz.png" alt="" class="tag-icon">
                 </li>
@@ -118,79 +121,44 @@
                             <li class="air-value">
                                 <p class="air-name">PM2.5</p>
                                 <p class="air-value">13</p>
-                                <div class="progress">
-                                    <div class="progress-bar  progress-bar-striped active"
-                                         role="progressbar"
-                                         aria-valuenow="13"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"
-                                         style="width:13%;">
-                                    </div>
+                                <div class="layui-progress">
+                                    <div class="layui-progress-bar " lay-percent="10%"></div>
                                 </div>
                             </li>
                             <li class="air-value">
                                 <p class="air-name">PM10</p>
                                 <p class="air-value">20</p>
-                                <div class="progress">
-                                    <div class="progress-bar"
-                                         role="progressbar"
-                                         aria-valuenow="20"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"
-                                         style="width:20%;">
-                                    </div>
+                                <div class="layui-progress">
+                                    <div class="layui-progress-bar " lay-percent="20%"></div>
                                 </div>
                             </li>
                             <li class="air-value">
                                 <p class="air-name">SO2</p>
                                 <p class="air-value">3</p>
-                                <div class="progress">
-                                    <div class="progress-bar"
-                                         role="progressbar"
-                                         aria-valuenow="3"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"
-                                         style="width:3%;">
-                                    </div>
+                                <div class="layui-progress">
+                                    <div class="layui-progress-bar " lay-percent="3%"></div>
+
                                 </div>
                             </li>
                             <li class="air-value">
                                 <p class="air-name">O3</p>
                                 <p class="air-value">7</p>
-                                <div class="progress">
-                                    <div class="progress-bar"
-                                         role="progressbar"
-                                         aria-valuenow="7"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"
-                                         style="width:7%;">
-                                    </div>
+                                <div class="layui-progress">
+                                    <div class="layui-progress-bar " lay-percent="7%"></div>
                                 </div>
                             </li>
                             <li class="air-value">
                                 <p class="air-name">NO2</p>
                                 <p class="air-value">13</p>
-                                <div class="progress">
-                                    <div class="progress-bar"
-                                         role="progressbar"
-                                         aria-valuenow="13"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"
-                                         style="width:13%;">
-                                    </div>
+                                <div class="layui-progress">
+                                    <div class="layui-progress-bar " lay-percent="13%"></div>
                                 </div>
                             </li>
                             <li class="air-value">
                                 <p class="air-name">CO</p>
                                 <p class="air-value">29</p>
-                                <div class="progress">
-                                    <div class="progress-bar"
-                                         role="progressbar"
-                                         aria-valuenow="29"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"
-                                         style="width:29%;">
-                                    </div>
+                                <div class="layui-progress">
+                                    <div class="layui-progress-bar " lay-percent="29%"></div>
                                 </div>
                             </li>
                         </ul>
@@ -214,14 +182,32 @@
                     <div class="title-more">
                         <p class="title">项目审批</p>
                         <div class="more">
-                            <select name="" id=""></select>
+                                <div class="layui-form editform">
+                                    <select  name="xmsp-year" lay-filter="xmsp-year" id="xmsp-year"  class="layui-select">
+                                        <option value="2018">2018年</option>
+                                        <option value="2019" selected>2019年</option>
+                                        <option value="2020">2020年</option>
+                                    </select>
+                                </div>
                         </div>
+                    </div>
+                    <div class="data-chart-list-item-content">
+                        <div id="xmsp-chart"></div>
                     </div>
                 </li>
                 <li class="data-chart-list-item">
                     <div class="title-more">
                         <p class="title">监察执法</p>
-                        <div class="more"></div>
+                        <div class="more">
+                            <div class="layui-form editform" style="width: 70px;">
+                                <select  name="zczf-week" lay-filter="zczf-week" id="zczf-week"  class="layui-select">
+                                    <option value="1">本周</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-chart-list-item-content">
+                        <div id="jczf-chart"></div>
                     </div>
                 </li>
                 <li class="data-chart-list-item">
@@ -229,17 +215,51 @@
                         <p class="title">重度污染天气预警</p>
                         <div class="more"></div>
                     </div>
+                    <div class="data-chart-list-item-content">
+                        <div class="left" id="weather-status">
+                            <div class="warn yellow">
+                                <span class="iconfont icon-jinggao1"></span>
+                                <span id="warn-type">黄色警告</span>
+                            </div>
+                            <div class="warn-level">
+                                二级
+                            </div>
+                            <div class="future72">未来72小时</div>
+                        </div>
+                        <div class="right layui-inline" id="calendar"></div>
+                    </div>
                 </li>
                 <li class="data-chart-list-item">
                     <div class="title-more">
                         <p class="title">环境应急</p>
                         <div class="more"></div>
                     </div>
+                    <div class="data-chart-list-item-content">
+                        <div id="hjyj-chart">
+
+                        </div>
+                    </div>
                 </li>
                 <li class="data-chart-list-item">
                     <div class="title-more">
                         <p class="title">行政处罚情况</p>
-                        <div class="more"></div>
+                        <div class="more">
+                            <div class="layui-form editform">
+                                <select  name="xzcf-year" lay-filter="xzcf-year" id="xzcf-year"  class="layui-select">
+                                    <option value="2018">2018年</option>
+                                    <option value="2019" selected>2019年</option>
+                                    <option value="2020">2020年</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-chart-list-item-content">
+                        <div class="left" id="xzcf-left-chart">
+
+                        </div>
+                        <div class="right" id="xzcf-right-chart">
+
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -251,9 +271,14 @@
     var airChartDom = document.getElementById('air-chart');
     var szzbChartDom = document.getElementById('szzb-chart');
     var dblChartDom = document.getElementById('dbl-chart');
+    var xmspChartDom = document.getElementById('xmsp-chart');
+    var jczfChartDom = document.getElementById('jczf-chart');
+    var xzcfLeftChartDom = document.getElementById('xzcf-left-chart');
+    var xzcfRightChartDom = document.getElementById('xzcf-right-chart');
+    var hjyjChartDom = document.getElementById('hjyj-chart');
 
     //echarts
-    var airChart,szzbChart,dblChart;
+    var airChart,szzbChart,dblChart,xmspChart,jczfChart,xzcfLeftChart,xzcfRightChart,hjyjChart;
     //获取空气质量现状数据
     function getAirChartData(){
         if(airChart){
@@ -567,13 +592,948 @@
         };
         dblChart.setOption(option)
     }
+    //项目审批
+    function xmsp(){
+        if(xmspChart){
+            xmspChart.dispose();
+        }
+        xmspChart = echarts.init(xmspChartDom);
+        var option = {
+            grid: {
+                 width:'90%', //调整折线图的宽度
+                top: 20,
+                x: 50,
+                x2: 50,
+                y2: 60
+            },
+            color:["#24C869","#D0A73E","#6676D8"],
+            legend:{
+                left:'center',
+                bottom:0,
+                itemGap:50,
+                data:[
+                    {
+                        name:'渝北区',
+                        icon:'circle'
+                    },
+                    {
+                        name:'永川区',
+                        icon:'circle'
+                    },
+                    {
+                        name:'万州区',
+                        icon:'circle',
+                    }
+                ]
+            },
+            backgroundColor: '#FFF',
+            tooltip: {
+                backgroundColor: 'rgb(255,255,255)',
+                padding: [10, 20, 10, 8],
+                textStyle: {
+                    fontSize: 12,
+                    lineHeight: 24,
+                    color:'#000'
+
+                },
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'line',
+                    lineStyle: {
+                        type: 'dashed',
+                        color: '#fff'
+                    }
+                }
+            },
+            xAxis: {
+                type: "category",
+                boundaryGap: false,
+                // 改变x轴颜色
+                axisLine: {
+                    lineStyle: {
+                        color: "#009cff",
+                        width: 0.3
+                    }
+                },
+                data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月'],
+                // 轴刻度
+                axisTick: {
+                    show: false
+                },
+                // 轴网格
+                splitLine: {
+                    show: false
+                },
+                axisLabel: {
+                    show: true,
+                    interval: 0, //横轴信息全部显示
+                    textStyle: {
+                        color: "#000",
+                        fontSize: 15
+                    },
+                    padding:[0,0,0,10]
+                }
+            },
+            yAxis: {
+                axisTick: {
+                    show: false //轴刻度不显示
+                },
+                min: 0,
+                // 改变y轴颜色
+                axisLine: {
+                    show:false,
+                    lineStyle: {
+                        color: "#009cff",
+                        width: 0.3
+                    }
+                },
+                // 轴网格
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: "#ccc",
+                    }
+                },
+                //坐标轴文字样式
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: "#000",
+                        fontSize: 14
+                    }
+                }
+            },
+            series: [
+                {
+                    name: '万州区',
+                    type: 'line',
+                    areaStyle: {
+                        color: "#24C869"
+                    },
+                    symbol: 'none', // 折线无拐点
+                    lineStyle: {
+                        normal: {
+                            width: 0 //折线宽度
+                        }
+
+                    },
+                    smooth: true,
+                    data: [3000, 4000, 2500, 3500, 4500, 3100, 2500, 2800, 3000,3400,4000]
+                },
+                {
+                    name: '永川区',
+                    type: 'line',
+                    areaStyle: {
+                        color: "#D0A73E"
+                    },
+                    symbol: 'none', // 折线无拐点
+                    lineStyle: {
+                        normal: {
+
+                            width: 0 //折线宽度
+                        }
+
+                    },
+                    smooth: true,
+                    data: [1000, 2300, 3000, 2500, 2700, 1800, 1900, 2400, 4000,3100,2900]
+
+                },
+                {
+                name: '渝北区',
+                type: 'line',
+                areaStyle: {
+                    color: "#6676D8"
+                },
+                symbol: 'none', // 折线无拐点
+                lineStyle: {
+                    normal: {
+                        width: 0 //折线宽度
+                    }
+
+                },
+                smooth: true,
+                data: [1100, 2100, 1300, 1250, 1105, 3180, 1250, 1400, 3400,1300,1500]
+
+            }
+            ]
+        };
+        xmspChart.setOption(option)
+    }
+    //监察执法
+    function jczf(){
+        if(jczfChart){
+            jczfChart.dispose();
+        }
+        jczfChart = echarts.init(jczfChartDom);
+        var option = {
+            backgroundColor:'#FFF',
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                width:'90%', //调整折线图的宽度
+                top: 20,
+                x: 50,
+                x2: 50,
+                y2: 60
+            },
+            legend: {
+                itemGap:50,
+                data: [{
+                    name:'渝北区',
+                    icon:'roundRect',
+                    textStyle:{
+                        color:'#000'
+                    }
+                },{
+                    name:'永川区',
+                    icon:'roundRect',
+                    textStyle:{
+                        color:'#000'
+                    }
+                },{
+                    name:'万州区',
+                    icon:'roundRect',
+                    textStyle:{
+                        color:'#000'
+                    }
+                }],
+                right: 'center',
+                bottom:'0',
+                textStyle: {
+                    color: "#fff"
+                },
+                itemWidth: 12,
+                itemHeight: 10,
+                // itemGap: 35
+            },
+            xAxis: {
+                type: 'category',
+                data: ['周一','周二','周三','周四','周五','周六','周天'],
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc'
+
+                    }
+                },
+                axisLabel: {
+                    // interval: 0,
+                    // rotate: 40,
+                    textStyle: {
+                        fontFamily: 'Microsoft YaHei',
+                        color:'#000'
+                    }
+                },
+            },
+
+            yAxis: {
+                type: 'value',
+                axisLine: {
+                    show: false,
+                    lineStyle: {
+                        color: 'white'
+                    }
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                },
+                axisLabel: {
+                    textStyle:{
+                        color:'#000'
+                    }
+                }
+            },
+            series: [{
+                name: '渝北区',
+                type: 'bar',
+                barWidth: '15%',
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: '#248ff7'
+                        }, {
+                            offset: 1,
+                            color: '#6851f1'
+                        }]),
+                        barBorderRadius: 11,
+                    }
+                },
+                data: [84,45,58,70,65,48,85]
+            },
+                {
+                    name: '永川区',
+                    type: 'bar',
+                    barWidth: '15%',
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: '#fccb05'
+                            }, {
+                                offset: 1,
+                                color: '#f5804d'
+                            }]),
+                            barBorderRadius: 12,
+                        }
+                    },
+                    data: [96,58,30,84,28,85,60]
+                },
+                {
+                    name: '万州区',
+                    type: 'bar',
+                    barWidth: '15%',
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: '#8bd46e'
+                            }, {
+                                offset: 1,
+                                color: '#09bcb7'
+                            }]),
+                            barBorderRadius: 11,
+                        }
+                    },
+                    data: [85,58,30,84,30,86,59]
+                }]
+        };
+        jczfChart.setOption(option);
+    }
+
+    function array2obj(array,key) {
+        var resObj = {};
+        for(var i=0;i<array.length;i++){
+            resObj[array[i][key]] = array[i];
+        }
+        return resObj;
+    }
+    //环境应急
+    function hjyj(){
+        if(hjyjChart){
+            hjyj.dispose();
+        }
+        hjyjChart = echarts.init(hjyjChartDom);
+
+        let color = ['#6A66FF', '#0090FF', '#EDA741'];
+        let chartData = [
+            {
+            name: "一般",
+            value: 400
+            },
+            {
+                name: "较大",
+                value: 200
+            },
+            {
+                name: "重大",
+                value: 100
+            }
+        ];
+        let arrName = [];
+        let arrValue = [];
+        let objData = array2obj(chartData, "name");
+        let sum = 0;
+        let pieSeries = [],
+            lineYAxis = [];
+
+        // 数据处理
+        chartData.forEach((v, i) => {
+            arrName.push(v.name);
+            arrValue.push(v.value);
+            sum = sum + v.value;
+        })
+
+        // 图表option整理
+        chartData.forEach((v, i) => {
+            pieSeries.push({
+                name: '学历',
+                type: 'pie',
+                clockWise: false,
+                hoverAnimation: false,
+                radius: [85 - i * 15 + '%', 74 - i * 15 + '%'],
+                center: ["30%", "50%"],
+                label: {
+                    show: false
+                },
+                data: [
+                    {
+                        value: v.value,
+                        name: v.name
+                    },
+                    {
+                        value: sum - v.value,
+                        name: '',
+                        itemStyle: {
+                            color: "rgba(0,0,0,0)"
+                        }
+                    }
+                ]
+            });
+            /*  pieSeries.push({
+                  name: '',
+                  type: 'pie',
+                  silent: true,
+                  z: 1,
+                  clockWise: false, //顺时加载
+                  hoverAnimation: false, //鼠标移入变大
+                  radius: [65 - i * 15 + '%',57 - i * 15 + '%'],
+                  center: ["30%", "50%"],
+                  label: {
+                      show: false
+                  },
+                  data: [{
+                      value: 7.5,
+                      itemStyle: {
+                          color: "#E3F0FF"
+                      }
+                  }, {
+                      value: 2.5,
+                      name: '',
+                      itemStyle: {
+                          color: "rgba(0,0,0,0)"
+                      }
+                  }]
+              });*/
+            v.percent = (v.value / sum * 100).toFixed(1) + "%";
+            lineYAxis.push({
+                value: i,
+                textStyle: {
+                    rich: {
+                        circle: {
+                            color: color[i],
+                            padding: [0, 5]
+                        }
+                    }
+                }
+            });
+        });
+
+        var option = {
+            backgroundColor: '#fff',
+            title:{
+                text:'环境应急总量'+sum+'件',
+                left:'60%',
+                top:50
+            },
+            color: color,
+            legend: {
+                show: true,
+                icon:"roundRect",
+                top: "center",
+                left: '60%',
+                data: arrName,
+                width:50,
+                padding: [0, 5],
+                itemGap: 25,
+                formatter: function(name) {
+                    return "{title|" + name + "}  {value|" + (objData[name].value) +"}  {title|项}"
+                },
+
+                textStyle: {
+                    rich: {
+                        title: {
+                            fontSize: 16,
+                            lineHeight: 15,
+                            color: "#000"
+                        },
+                        value: {
+                            fontSize: 18,
+                            lineHeight: 20,
+                            color: "#000"
+                        }
+                    }
+                },
+            },
+            grid: {
+                top: '15%',
+                bottom: '54%',
+                left: "30%",
+                containLabel: false
+            },
+            yAxis: [{
+                type: 'category',
+                inverse: true,
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    formatter: function(params) {
+                        let item = chartData[params];
+                        console.log(item)
+                        return '{icon|}{circle|●}{name|'+ item.name +'}{bd||}{percent|'+item.percent+'}{value|'+ item.value+'}'
+                    },
+                    interval: 0,
+                    inside: true,
+                    textStyle: {
+                        color: "#333",
+                        fontSize: 14,
+                        rich: {
+                            line: {
+                                width: 170,
+                                height: 10
+                            },
+                            name: {
+                                color: '#666',
+                                fontSize: 14,
+                            },
+                            bd: {
+                                color: '#ccc',
+                                padding: [0, 5],
+                                fontSize: 14,
+                            },
+                            percent:{
+                                color: '#333',
+                                fontSize: 14,
+                            },
+                            value: {
+                                color: '#333',
+                                fontSize: 16,
+                                fontWeight: 500,
+                                padding: [0, 0, 0, 20]
+                            },
+                            unit: {
+                                fontSize: 14
+                            }
+                        }
+                    },
+                    show: false
+                },
+                data: lineYAxis
+            }],
+            xAxis: [{
+                show: false
+            }],
+            series: pieSeries
+        };
+        hjyjChart.setOption(option);
+    }
+    //行政处罚
+    function xzcf(){
+        //折线图
+        if(xzcfLeftChart){
+            xzcfLeftChart.dispose();
+        }
+        xzcfLeftChart = echarts.init(xzcfLeftChartDom);
+        var option = {
+            grid: {
+                width:'90%', //调整折线图的宽度
+                top: 20,
+                x: 50,
+                x2: 50,
+                y2: 60
+            },
+            color:["#24C869","#D0A73E","#6676D8"],
+            legend:{
+                left:'center',
+                bottom:0,
+                itemGap:50,
+                data:[
+                    {
+                        name:'渝北区',
+                        icon:'circle'
+                    },
+                    {
+                        name:'永川区',
+                        icon:'circle'
+                    },
+                    {
+                        name:'万州区',
+                        icon:'circle',
+                    }
+                ]
+            },
+            backgroundColor: '#FFF',
+            tooltip: {
+                backgroundColor: 'rgb(255,255,255)',
+                padding: [10, 20, 10, 8],
+                textStyle: {
+                    fontSize: 12,
+                    lineHeight: 24,
+                    color:'#000'
+
+                },
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'line',
+                    lineStyle: {
+                        type: 'dashed',
+                        color: '#fff'
+                    }
+                }
+            },
+            xAxis: {
+                type: "category",
+                boundaryGap: false,
+                // 改变x轴颜色
+                axisLine: {
+                    lineStyle: {
+                        color: "#009cff",
+                        width: 0.3
+                    }
+                },
+                data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月'],
+                // 轴刻度
+                axisTick: {
+                    show: false
+                },
+                // 轴网格
+                splitLine: {
+                    show: false
+                },
+                axisLabel: {
+                    show: true,
+                    interval: 0, //横轴信息全部显示
+                    textStyle: {
+                        color: "#000",
+                        fontSize: 15
+                    },
+                    padding:[0,0,0,10]
+                }
+            },
+            yAxis: {
+                axisTick: {
+                    show: false //轴刻度不显示
+                },
+                min: 0,
+                // 改变y轴颜色
+                axisLine: {
+                    show:false,
+                    lineStyle: {
+                        color: "#009cff",
+                        width: 0.3
+                    }
+                },
+                // 轴网格
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: "#ccc",
+                    }
+                },
+                //坐标轴文字样式
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: "#000",
+                        fontSize: 14
+                    }
+                }
+            },
+            series: [
+                {
+                    name: '万州区',
+                    type: 'line',
+                    areaStyle: {
+                        color: "#24C869"
+                    },
+                    symbol: 'none', // 折线无拐点
+                    lineStyle: {
+                        normal: {
+                            width: 0 //折线宽度
+                        }
+
+                    },
+                    smooth: true,
+                    data: [400, 100, 200, 160, 280, 260, 350, 450, 200,150,360]
+                },
+                {
+                    name: '永川区',
+                    type: 'line',
+                    areaStyle: {
+                        color: "#D0A73E"
+                    },
+                    symbol: 'none', // 折线无拐点
+                    lineStyle: {
+                        normal: {
+
+                            width: 0 //折线宽度
+                        }
+
+                    },
+                    smooth: true,
+                    data: [100, 200, 300, 250, 270, 180, 190, 240, 400,310,290]
+
+                },
+                {
+                    name: '渝北区',
+                    type: 'line',
+                    areaStyle: {
+                        color: "#6676D8"
+                    },
+                    symbol: 'none', // 折线无拐点
+                    lineStyle: {
+                        normal: {
+                            width: 0 //折线宽度
+                        }
+
+                    },
+                    smooth: true,
+                    data: [110, 210, 130, 125, 110, 318, 125, 140, 340,130,150]
+
+                }
+            ]
+        };
+        xzcfLeftChart.setOption(option)
+        //环状图
+        if(xzcfRightChart){
+            xzcfRightChart.dispose();
+        }
+        xzcfRightChart = echarts.init(xzcfRightChartDom);
+        let echartData = [{
+            'name': '其他',
+            'value': 8
+        }, {
+            'name': '警告',
+            'value': 19
+        }, {
+            'name': '罚款',
+            'value': 20
+        }, {
+            'name': '停产整顿',
+            'value': 18
+        }, {
+            'name': '停产',
+            'value': 17
+        }, {
+            'name': '吊销许可证',
+            'value': 18
+        }
+        ];
+        let formatNumber = function(num) {
+            let reg = /(?=(\B)(\d{3})+$)/g;
+            return num.toString().replace(reg, ',');
+        }
+        let total = echartData.reduce((a, b) => {
+            return a + b.value * 1
+        }, 0);
+
+        var option = {
+            backgroundColor: '#FFF',
+            color: ['#9600FF', '#534EFD', '#008FFE', '#00BE12','#FFBA00','#FF6C00'],
+            // tooltip: {
+            //     trigger: 'item'
+            // },
+            title: [{
+                text:'占比',
+                top: 'center',
+                left: 'center',
+                textStyle: {
+                    rich: {
+                        name: {
+                            fontSize: 20,
+                            fontWeight: 'normal',
+                            color: '#666666',
+                            padding: [10, 0]
+                        },
+                        val: {
+                            fontSize: 32,
+                            fontWeight: 'bold',
+                            color: '#333333',
+                        }
+                    }
+                }
+            }],
+            series: [{
+                type: 'pie',
+                radius: ['90px', '120px'],
+                center: ['50%', '50%'],
+                data: echartData,
+                hoverAnimation: false,
+                itemStyle: {
+                    normal: {
+                        borderColor: '#FFF',
+                        borderWidth: 2
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        length: 20,
+                        length2: 80,
+                        lineStyle: {
+                            color: '#e6e6e6'
+                        }
+                    }
+                },
+                label: {
+                    normal: {
+                        formatter: params => {
+                            return (
+                                '{icon|●}{name|' + params.name + '}{value|' +
+                                formatNumber(params.value) + '%}'
+                            );
+                        },
+                        padding: [0 , -100, 25, -100],
+                        rich: {
+                            icon: {
+                                fontSize: 16
+                            },
+                            name: {
+                                fontSize: 16,
+                                padding: [0, 10, 0, 4],
+                                color: '#666666'
+                            },
+                            value: {
+                                fontSize: 16,
+                                color: '#333333'
+                            }
+                        }
+                    }
+                },
+            }]
+        };
+        xzcfRightChart.setOption(option);
+    }
     $(function(){
+        var layer = layui.layer;
+        //渲染进度条
+        var element = layui.element;
+        element.render('progress');
+        //渲染下拉框
+        var form = layui.form;
+        form.render('select');
+        form.on('select(xmsp-year)',function(data){
+            console.log('data',data)
+            xmsp();
+        });
+        form.on('select(xzcf-year)',function(data){
+            console.log('data',data)
+            xzcf();
+        });
+        form.on('select(zczf-week)',function(data){
+            jczf();
+        });
+        //日期控件
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#calendar',
+            position: 'static',
+            showBottom: false,
+            ready:function(date){
+                //获取数据
+                $.getJSON('./static/json/weather_data.json',function(res){
+                    if(res.code == 0){
+                        var data = res.data;
+                        var choosedate = $('.layui-laydate-content td');
+                        var tmp;
+                        choosedate.each(function(){
+                            var detailDate = $(this).attr("lay-ymd");
+                            var year = detailDate.split('-')[0];
+                            var month = detailDate.split('-')[1] >=10 ? detailDate.split('-')[1] : '0'+ detailDate.split('-')[1];
+                            var date = detailDate.split('-')[2] >=10 ? detailDate.split('-')[2] : '0'+ detailDate.split('-')[2];
+                            detailDate = year + '-' + month + '-' + date;
+                            tmp = data.find(function(item){
+                                var detailDateTime = new Date(detailDate).getTime();
+                                var itemTime = new Date(item.date).getTime();
+                                return detailDateTime == itemTime;
+                            });
+                            if(tmp){
+                                switch(tmp.status){
+                                    case '优':
+                                        $(this).html("<span class='td-date good'>"+date+"</span>");
+                                        break;
+                                    case '一般':
+                                        $(this).html("<span class='td-date normal'>"+date+"</span>");
+                                        break;
+                                    case '差':
+                                        $(this).html("<span class='td-date bad'>"+date+"</span>");
+                                        break;
+                                    case '严重':
+                                        $(this).html("<span class='td-date terrible'>"+date+"</span>");
+                                        break;
+                                    default:
+                                        $(this).html("<span class='td-date'>"+date+"</span>");
+                                        break;
+                                }
+                            }else{
+                                $(this).html("<span class='td-date'>"+date+"</span>");
+                            }
+                        })
+                    }else{
+                        layer.msg('res.msg')
+                    }
+                });
+
+            },
+            done:function(date){
+                console.log('date',date)
+            },
+            change: function(value, date, endDate){
+                //获取数据
+                $.getJSON('./static/json/weather_data.json',function(res){
+                    if(res.code == 0){
+                        var data = res.data;
+                        var choosedate = $('.layui-laydate-content td');
+                        var tmp;
+                        choosedate.each(function(){
+                            var detailDate = $(this).attr("lay-ymd");
+                            var year = detailDate.split('-')[0];
+                            var month = detailDate.split('-')[1] >=10 ? detailDate.split('-')[1] : '0'+ detailDate.split('-')[1];
+                            var date = detailDate.split('-')[2] >=10 ? detailDate.split('-')[2] : '0'+ detailDate.split('-')[2];
+                            detailDate = year + '-' + month + '-' + date;
+                            tmp = data.find(function(item){
+                                var detailDateTime = new Date(detailDate).getTime();
+                                var itemTime = new Date(item.date).getTime();
+                                return detailDateTime == itemTime;
+                            });
+                            if(tmp){
+                                switch(tmp.status){
+                                    case '优':
+                                        $(this).html("<span class='td-date good'>"+date+"</span>");
+                                        break;
+                                    case '一般':
+                                        $(this).html("<span class='td-date normal'>"+date+"</span>");
+                                        break;
+                                    case '差':
+                                        $(this).html("<span class='td-date bad'>"+date+"</span>");
+                                        break;
+                                    case '严重':
+                                        $(this).html("<span class='td-date terrible'>"+date+"</span>");
+                                        break;
+                                    default:
+                                        $(this).html("<span class='td-date'>"+date+"</span>");
+                                        break;
+                                }
+                            }else{
+                                $(this).html("<span class='td-date'>"+date+"</span>");
+                            }
+                        })
+                    }else{
+                        layer.msg('res.msg')
+                    }
+                });
+        }
+        });
+
+        //总数详情
+        $("#xmsp-num").numberAnimate({num:'57865',pst:'',dot:0, speed:2000, symbol:","})
+        $("#jczf-num").numberAnimate({num:'2534',pst:'',dot:0, speed:2000, symbol:","})
+        $("#hjyj-num").numberAnimate({num:'201',pst:'',dot:0, speed:2000, symbol:","})
+        $("#zwyj-num").numberAnimate({num:'73',pst:'',dot:0, speed:2000, symbol:","})
+        $("#xzcf-num").numberAnimate({num:'3663',pst:'',dot:0, speed:2000, symbol:","})
         //获取空气质量图表数据
         getAirChartData();
         //水质占比
         szzb();
         //达标率
         dbl();
+        //项目审批
+        xmsp();
+        //检查执法
+        jczf();
+        //行政处罚
+        xzcf();
+        //环境应急
+        hjyj();
     })
 </script>
 </html>
