@@ -1,0 +1,206 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body .page-container {
+  width: 100%;
+  height: 100%;
+  background: #ECF0F3;
+}
+body .page-container .header {
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  background: -moz-linear-gradient(left, #0030bb 0%, #0030bb 23%, #0030bb 68%, #532cf7 85%, #5e2cff 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, #0030bb), color-stop(23%, #0030bb), color-stop(68%, #0030bb), color-stop(85%, #532cf7), color-stop(100%, #5e2cff));
+  background: -webkit-linear-gradient(left, #0030bb 0%, #0030bb 23%, #0030bb 68%, #532cf7 85%, #5e2cff 100%);
+  background: -o-linear-gradient(left, #0030bb 0%, #0030bb 23%, #0030bb 68%, #532cf7 85%, #5e2cff 100%);
+  background: -ms-linear-gradient(left, #0030bb 0%, #0030bb 23%, #0030bb 68%, #532cf7 85%, #5e2cff 100%);
+  background: linear-gradient(to right, #0030bb 0%, #0030bb 23%, #0030bb 68%, #532cf7 85%, #5e2cff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0030bb', endColorstr='#5e2cff', GradientType=1);
+}
+body .page-container .header .logo-part {
+  text-decoration: none;
+  float: left;
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 20px;
+}
+body .page-container .header .logo-part img {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  background: blue;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+body .page-container .header #nav-list {
+  width: auto;
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  float: right;
+  margin: 0;
+  margin-right: 30px;
+}
+body .page-container .header #nav-list li {
+  margin-right: 15px;
+}
+body .page-container .header #nav-list li.active a,
+body .page-container .header #nav-list li:hover a {
+  background: #0042FF;
+  -moz-box-shadow: -1px 6px 5px #333333;
+  -webkit-box-shadow: -1px 6px 5px #333333;
+  box-shadow: -1px 6px 5px #333333;
+}
+body .page-container .header #nav-list li a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 4px 15px;
+  font-size: 16px;
+  color: #FFF;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: all 300ms ease-in 0ms;
+}
+body .page-container .header #nav-list li a .iconfont {
+  font-size: 20px;
+  margin-right: 10px;
+}
+body .page-container .header #user,
+body .page-container .header #logout {
+  float: right;
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body .page-container .header #user a,
+body .page-container .header #logout a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #FFF;
+  text-decoration: none;
+  padding: 0px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+body .page-container .header #logout a .iconfont {
+  font-size: 24px;
+  margin-right: 10px;
+  transition: all 300ms ease-in 0ms;
+}
+body .page-container .header #logout a:hover .iconfont {
+  font-size: 28px;
+}
+body .page-container .header #user a {
+  border-right: 2px solid #FFF;
+}
+body .page-container .header #user a img {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin-right: 10px;
+  transition: all 300ms ease-in 0ms;
+}
+body .page-container .header #user a:hover img {
+  width: 35px;
+  height: 35px;
+}
+body .page-container .main {
+  width: 100%;
+  height: calc(100% - 60px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+body .page-container .main .left {
+  width: 200px;
+  height: 100%;
+}
+body .page-container .main .left .nav-list {
+  list-style: none;
+}
+body .page-container .main .left .nav-list .nav-list-item {
+  padding: 30px;
+}
+body .page-container .main .left .nav-list .nav-list-item .nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #8F8D8D;
+  transition: all 300ms ease-in 0ms;
+}
+body .page-container .main .left .nav-list .nav-list-item .nav .logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 2px solid #CCDAF3;
+  padding: 5px;
+  margin-bottom: 10px;
+  transition: all 300ms ease-in 0ms;
+}
+body .page-container .main .left .nav-list .nav-list-item .nav .logo .logo-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #C0D2F3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 300ms ease-in 0ms;
+}
+body .page-container .main .left .nav-list .nav-list-item .nav .logo .logo-container .iconfont {
+  font-size: 40px;
+  color: #3A48D3;
+  transition: all 300ms ease-in 0ms;
+}
+body .page-container .main .left .nav-list .nav-list-item:hover .nav,
+body .page-container .main .left .nav-list .nav-list-item.active .nav {
+  color: #3A48D3;
+}
+body .page-container .main .left .nav-list .nav-list-item:hover .nav .logo,
+body .page-container .main .left .nav-list .nav-list-item.active .nav .logo {
+  border: 2px solid #3A48D3;
+}
+body .page-container .main .left .nav-list .nav-list-item:hover .nav .logo .logo-container,
+body .page-container .main .left .nav-list .nav-list-item.active .nav .logo .logo-container {
+  background: #3A48D3;
+}
+body .page-container .main .left .nav-list .nav-list-item:hover .nav .logo .logo-container .iconfont,
+body .page-container .main .left .nav-list .nav-list-item.active .nav .logo .logo-container .iconfont {
+  color: #FFF;
+}
+body .page-container .main .right {
+  width: calc(100% - 200px);
+  height: 100%;
+}
+/*# sourceMappingURL=searchResult.css.map */

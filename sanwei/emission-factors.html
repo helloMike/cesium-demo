@@ -688,7 +688,7 @@
             div.style.backgroundColor = "#1C85F4";
             div.style.border = "1px solid #FFF";
             div.style.color = "white";
-            div.style.width = "130px";
+            div.style.width = "auto";
             div.style.height = "20px";
             div.style.padding = "10px";
             div.style.lineHeight = "18px";
@@ -699,13 +699,20 @@
             var p_area_node = document.createElement("p");
             p_area_node.className = 'area';
             div.appendChild(p_area_node);
-            p_area_node.appendChild(document.createTextNode(this.area+':'));
+            p_area_node.appendChild(document.createTextNode(this.area+' '));
             var p_mount_node = document.createElement("p");
             p_mount_node.className = 'mount';
             div.appendChild(p_mount_node);
             p_area_node.appendChild(document.createTextNode("工业源:"+this.mount));
             map.getPanes().overlayPane.appendChild(this._div);
             this.update(this.lnglat);
+        },
+        onRemove: function() {
+            console.log()
+            this.div = null;
+            this.update();
+        },
+        getElement:function(dom){
         },
         /**
          * 更新位置
@@ -784,7 +791,23 @@
                                     if(overlayerLabel){
                                         map.removeOverLay(overlayerLabel);
                                     }
-                                    overlayerLabel = new definedOverlay2(center,factory.name,factory.mount,{});
+                                    //overlayerLabel = new definedOverlay2(center,factory.name,factory.mount,{});
+                                    var labelContent = "<div class='factory-label'>" +
+                                        "<p class='area'>" +
+                                        factory.name +
+                                        "</p>" +
+                                        "<p class='mount'>"+
+                                        "工业源:"+
+                                        factory.mount + "家"+
+                                        "</p>"
+                                        "</div>";
+                                    overlayerLabel = new T.Label({
+                                        text: labelContent,
+                                        position: center,
+                                        offset: new T.Point(-200, -100)
+                                    });
+                                    overlayerLabel.setBackgroundColor("#1C85F4").setBorderLine(2).setBorderColor('#FFF').setZindex(1001);
+                                    console.log('overLay',overlayerLabel)
                                     map.addOverLay(overlayerLabel);
                                     this.clicked = true;
                                     this.setFillColor("#6A66FF");

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>业务分类</title>
+    <link rel="stylesheet" href="./static/css/bus-categories.css">
+    <link rel="stylesheet" href="./static/iconfont/iconfont.css">
+    <link rel="stylesheet" href="./static/js/layui-v2.4.5/layui/css/layui.css">
+    <script src="./static/js/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="./static/js/layui-v2.4.5/layui/layui.all.js"></script>
+    <script>
+        function detail(d){
+            console.log('d',d)
+        }
+        $(function(){
+            var form  = layui.form;
+            var laydate = layui.laydate;
+            var table = layui.table;
+            var height = $(".table-part").height();
+            console.log('height',height)
+            //渲染时间选择框
+            laydate.render({
+                elem:'#startDate'
+            });
+            laydate.render({
+                elem:'#endDate'
+            });
+            //渲染下拉框
+            form.render('select');
+            //渲染多选框
+            form.render('checkbox');
+            //渲染表格
+            table.render({
+                id:'table_01',
+                elem: '#result-table',
+                url:'./static/json/result_table.json',
+                height:height,
+                page:{
+                    theme: '#3582D5',
+                    layout: ['limit','count','prev','page','next','skip']
+                },
+                cols:[[
+                    {
+                        field:'serial',
+                        title:'序号',
+                        align:'center',
+                        templet:function(d){
+                            return '<span>'+d.LAY_INDEX+'</span>'
+                        }
+                    },
+                    {
+                        field:'enterpriseName',
+                        title:'企业名称',
+                        align:'center',
+                    },
+                    {
+                        field:'projectName',
+                        title:'项目名称',
+                        align:'center',
+                    },
+                    {
+                        field:'area',
+                        title:'区县',
+                        align:'center'
+                    },
+                    {
+                        field:'industry',
+                        title:'行业',
+                        align:'center'
+                    },
+                    {
+                        field:'project_num',
+                        title:'项目总数（个）',
+                        align:'center'
+                    },
+                    {
+                        field:'total_investment',
+                        title:'总投资（万元）',
+                        align:'center'
+                    },
+                    {
+                        field:'env_investment',
+                        title:'环保投资（万元）',
+                        align:'center'
+                    },
+                    {
+                        field:'final_approval_time',
+                        title:'最后审批时间',
+                        align:'center'
+                    },
+                    {
+                        field:'operation',
+                        title:'操作',
+                        align:'center',
+                        templet:function(d){
+                            return "<a href='javascript:void(0)' class=\"detail\" lay-event=\"detail\">详情</a>"
+                        }
+                    }
+                ]]
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="bus-categories-form-container">
+            <form action="" class="bus-categories-form layui-form">
+                <div class="layui-row">
+                    <div class="layui-col-md3">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width:120px;">通用搜索视觉：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="enterprise"  placeholder="请输入企业名称" autocomplete="off" class="layui-input" style="width:280px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md2">
+                        <div class="layui-form-item">
+                            <div class="layui-inline" style="width:100px;">
+                                <select name="xzqh">
+                                    <option value="0">行政区划</option>
+                                    <option value="1" >芗城区</option>
+                                    <option value="2">龙文区</option>
+                                    <option value="3">龙海市</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline" style="width:140px;">
+                                <select name="qylx">
+                                    <option value="0">化工、火电等</option>
+                                    <option value="1" >化工、火电等</option>
+                                    <option value="2">化工、火电等</option>
+                                    <option value="3">化工、火电等</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline" style="width:1px;height:35px;background:#ccc;"></div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md2">
+                        <div class="layui-form-item">
+                            <input type="checkbox" name="enterprise-type" lay-skin="primary" title="重点排污单位">
+                            <input type="checkbox" name="enterprise-type" lay-skin="primary" title="大中型企业">
+                        </div>
+                    </div>
+                 <!--   <div class="layui-col-md-offset4">
+
+                    </div>-->
+                    <div class="layui-col-md2  layui-col-md-offset3">
+                        <p class="warn">
+                            <i class="iconfont icon-jinggao"></i>
+                            若您有特殊查询视觉请告知我们
+                        </p>
+                    </div>
+                </div>
+                <div class="layui-row">
+                    <div class="layui-col-md3">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width:120px;">业务搜索视觉：</label>
+                                <div class="layui-inline">
+                                    <input type="text" name="project"  placeholder="请输入建设项目名称" autocomplete="off" class="layui-input" style="width:280px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md8">
+                        <div class="layui-form-item layui-inline">
+                            <label class="layui-form-label" style="width:100px;">总投资大于：</label>
+                            <div class="layui-inline" style="width:120px;position:relative;margin-right:0;">
+                                <input type="number" name="investment"  placeholder="" autocomplete="off" class="layui-input" style="width:120px;padding-right:35px;">
+                                <span class="investment-uint">万元</span>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-inline">
+                            <label class="layui-form-label" style="width:140px;">环保投资比小于：</label>
+                            <div class="layui-inline" style="width:100px;position:relative;">
+                                <input type="number" name="investment-radio"  placeholder="" autocomplete="off" class="layui-input" style="width:100px;padding-right:20px;">
+                                <span class="investment-radio-uint">%</span>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-inline" style="width:1px;height:35px;background:#ccc;margin-right:10px;"></div>
+                        <div class="layui-form-item layui-inline">
+                            <label class="layui-form-label">审批时间：</label>
+                            <div class="layui-inline">
+                                <input type="text" class="layui-input" id="startDate" placeholder="yyyy-MM-dd">
+                            </div>
+                            <div class="layui-inline">
+                                <span>
+                                                                至
+                                </span>
+                            </div>
+                            <div class="layui-inline">
+                                <input type="text" class="layui-input" id="endDate" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-inline" style="width:1px;height:35px;background:#ccc;margin-right:10px;"></div>
+                        <div class="layui-form-item layui-inline" style="height:40px;">
+                            <input type="checkbox" name="not-enterprise" lay-skin="primary" title="非环评企业">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-row">
+                    <div class="layui-col-md4" style="padding-left:100px;">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width:50px;">类型：</label>
+                                <div class="layui-inline"  style="width:100px;">
+                                    <select name="lx">
+                                        <option value="0">报告书</option>
+                                        <option value="1">报告书</option>
+                                        <option value="2">报告书</option>
+                                        <option value="3">报告书</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width:50px;">级别：</label>
+                                <div class="layui-inline" style="width:100px;">
+                                    <select name="lx">
+                                        <option value="0">省级</option>
+                                        <option value="1" >市级</option>
+                                        <option value="2">区县</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md1 layui-col-md-offset7">
+                        <button type="button" lay-submit lay-filter="formSubmit" class="layui-btn search-btn">
+                            搜索
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="quick-btn-list">
+                <span>快捷按钮：</span>
+                <ul class="btn-list">
+                    <li class="quick-btn selected" >环保投资占比小于全市均值企业</li>
+                    <li class="quick-btn">今年环评企业</li>
+                    <li class="quick-btn">疑似生态红线企业</li>
+                </ul>
+            </div>
+        </div>
+        <div class="table-part">
+            <table id="result-table" class="layui-table" lay-filter="table_01" lay-data="{id: 'table_01'}"></table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,193 @@
+*{
+  padding:0;
+  margin:0;
+}
+html,body{
+  width:100%;
+  height:100%;
+}
+body{
+  .page-container{
+    width:100%;
+    height:100%;
+    box-sizing: border-box;
+    padding-top:15px;
+    background:#ECF0F3;
+    .bus-categories-form-container{
+      width:100%;
+      height:auto;
+      padding:10px;
+      box-sizing: border-box;
+      background:#FFF;
+      -moz-box-shadow:2px 2px 5px #333333;
+      -webkit-box-shadow:2px 2px 5px #333333;
+      box-shadow:2px 2px 5px #333333;
+      margin-bottom:15px;
+      .bus-categories-form{
+        width:100%;
+        min-height:100px;
+        border-bottom:2px solid #d1d1d1;
+        .warn{
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+          color:#787878;
+          font-size:16px;
+          font-weight:bold;
+          .icon-jinggao{
+            font-size:26px;
+            margin-right:5px;
+            color:#5FBE83;
+          }
+        }
+        .investment-uint,.investment-radio-uint{
+          position: absolute;
+          right:5px;
+          top:5px;
+          color:#787878;
+          font-size:16px;
+          font-weight:bold;
+        }
+        .investment-radio-uint{
+          top:6px;
+          font-size:18px;
+        }
+        .search-btn{
+          float:right;
+          border-radius:5px;
+          padding:0 18px 0 45px;
+          display: block;
+          font-size:16px;
+          font-weight:bold;
+          background:url("../images/search-icon.png") no-repeat 20px center #0BAB56;
+          background-size:24px 24px;
+          -moz-box-shadow:-1px 0px 7px #0BAB56;
+          -webkit-box-shadow:-1px 0px 7px #0BAB56;
+          box-shadow:-1px 0px 7px #0BAB56;
+        }
+      }
+      .quick-btn-list{
+        width:100%;
+        height:auto;
+        padding:10px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        color:#787878;
+        font-size:16px;
+        font-weight:bold;
+        .btn-list{
+          width:calc(100% - 100px);
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          flex-wrap: wrap;
+          li{
+            padding:5px 10px;
+            margin-right:20px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            -moz-box-shadow:1px 1px 0px #ADADAD;
+            -webkit-box-shadow:1px 1px 0px #ADADAD;
+            box-shadow:1px 1px 0px #ADADAD;
+            transition: all 300ms ease-in 0ms;
+            &:hover,&.selected{
+              border:1px solid #FCA148;
+              color:#FCA148;
+              -moz-box-shadow:1px 1px 0px #FCA148;
+              -webkit-box-shadow:1px 1px 0px #FCA148;
+              box-shadow:1px 1px 0px #FCA148;
+            }
+          }
+        }
+      }
+    }
+    .table-part{
+      width:100%;
+      height:calc(100% - 275px);
+      background:#FFF;
+      .layui-table-view{
+        .layui-table-box{
+          .layui-table-header{
+            table{
+              thead{
+                tr{
+                  background:#458CD7;
+                  color:#FFF;
+                }
+              }
+            }
+          }
+          .layui-table-body{
+            tbody tr:nth-child(2n+1){
+              background:#F6F6F6;
+            }
+          }
+        }
+
+      }
+      #result-table{
+        width:100%;
+        height:100%
+      }
+    }
+  }
+  .layui-form-label{
+    padding:8px 0;
+    color:#787878;
+    font-size:16px;
+    font-weight:bold;
+  }
+  .layui-input{
+    height:34px;
+    border-radius:5px;
+    //border:2px solid #e4e4e4;
+    background-color:#FAFAFA;
+    -moz-box-shadow:1px 1px 0px #ADADAD;
+    -webkit-box-shadow:1px 1px 0px #ADADAD;
+    box-shadow:1px 1px 0px #ADADAD;
+    &::placeholder {
+      color:#ADADAD;
+      font-size:16px;
+    }
+  }
+  .layui-form-checked[lay-skin="primary"] i{
+    border-color: #E2E2E2;
+    color:#438CD9;
+    background:#FFF;
+    font-weight:bolder;
+  }
+  .layui-form-checkbox[lay-skin="primary"]:hover i{
+    color:#438CD9;
+    border-color: #E2E2E2;
+    border-radius:5px;
+  }
+  .layui-unselect{
+    .layui-anim{
+      dd{
+        text-align: center;
+        &:hover{
+          background-color:#3154DE;
+          color:#FFF;
+        }
+      }
+      .layui-this{
+        background-color:#3154DE;
+
+      }
+    }
+  }
+  .layui-table-cell{
+    .detail{
+      color:#47A0E6;
+    }
+  }
+  .layui-table-page{
+    .layui-laypage{
+      float:right;
+    }
+  }
+}
